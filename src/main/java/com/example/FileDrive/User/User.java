@@ -1,5 +1,7 @@
 package com.example.FileDrive.User;
 
+import org.springframework.context.annotation.Bean;
+
 
 public class User {
 

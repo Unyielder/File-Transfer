@@ -1,4 +1,4 @@
-package com.example.FileDrive.config;
+package com.example.Unyielder.FileDrive.config;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

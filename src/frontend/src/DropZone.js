@@ -9,16 +9,16 @@ function DropZone() {
       console.log(file)
       const formData = new FormData();
       formData.append("file", file);
+
       axios.post(
-        "localhost:8080/file-sharing/upload",
+        "http://localhost:8080/file-sharing/upload",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data"
           }
         }
-      )
-      .then(() => {
+      ).then(() => {
         console.log("File uploaded succesfully!");
       })
       .catch((err) => {

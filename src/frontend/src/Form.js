@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
-export default function Form() {
+
+export default function Form({ files }) {
     const {register, handleSubmit} = useForm();
-    const [isEmail, setEmail] = useState(false);
+    const formData = new FormData();
 
-    // const onRadioChange = () => {
-    //     if()
-    // }
-
-    // const onSubmit = () => {
-
-    // }
+    files.forEach(file => {
+        formData.append("file", file);
+    })
+    
+    const onSubmit = () => {
+        if(!formData.get("file")) {
+            alert("You need to attach atleast 1 file before submitting.")
+        } else {
+            axios.post(
+                "http://localhost:8080/file-sharing/upload",
+                formData,
+                {
+                    "headers": {
+                        "Content-Type": "multipart/form-data"
+                    }
+                }
+            ).then(() => {
+                console.log("Upload Successful!");
+            }).catch(() => {
+                console.log("Unable to upload file");
+            })
+        }
+    }
 
     return (
-        <form className="Form" >
+        
+        <form className="Form" onSubmit={handleSubmit(() => onSubmit())}>
             <label>Title
                 <input type="text" name="title" {...register("title", {required:true})}/>
             </label>
@@ -22,16 +41,8 @@ export default function Form() {
             <label>Message
                 <input type="textarea" name="message" {...register("message")}/>
             </label>
-            <label>Transfer type
-                <input type="radio" id="email" name="transfer-type" value="email" {...register("radioButton")}/>
-                <label htmlFor="email">Email</label>
-                <input type="radio" id="link" name="transfer-type" value="link" {...register("radioButton")}/>
-                <label htmlFor="link">Link</label>
-            </label>
-            
-            
-            <input type="submit"/>
 
+            <input type="submit" value="Generate link"/>
 
         </form>
     )

@@ -2,8 +2,13 @@ package com.example.Unyielder.FileDrive.fileShare;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/file-sharing")
@@ -22,8 +27,7 @@ public class FileShareController {
             consumes= MediaType.MULTIPART_FORM_DATA_VALUE,
             produces= MediaType.APPLICATION_JSON_VALUE
     )
-    public void fileUpload(@RequestParam("file") MultipartFile file) {
-        fileShareService.upload(file);
+    public void fileUpload(@RequestParam("file") List<MultipartFile> fileArray) throws IOException {
+        fileShareService.upload(fileArray);
     }
-
 }

@@ -64,7 +64,8 @@ public class FileShareService {
 
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentDisposition("attachment; filename=zipFile.zip");
-            storeFile(path, "zipFile.zip", zipFileInputStream, metadata);
+            //storeFile(path, "zipFile.zip", zipFileInputStream, metadata);
+            storeFile(path, "zipFile.zip", zipFile);
             zos.close();
         }
 
@@ -76,6 +77,14 @@ public class FileShareService {
                 fileName,
                 inputStream,
                 metadata
+        );
+    }
+
+    private void storeFile(String path, String fileName, File file) {
+        s3.putObject(
+                path,
+                fileName,
+                file
         );
     }
 

@@ -25,8 +25,8 @@ export default function Form({ files }) {
                 }
             ).then(() => {
                 console.log("Upload Successful!");
-            }).catch(() => {
-                console.log("Unable to upload file");
+            }).catch((err) => {
+                console.log("Unable to upload file", err);
             })
         }
     }

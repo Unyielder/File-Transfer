@@ -35,15 +35,22 @@ export default function Form({ files }) {
         
         <form className="Form" onSubmit={handleSubmit(() => onSubmit())}>
             <label>Title
-                <input type="text" name="title" {...register("title", {required:true})}/>
+                <input 
+                    type="text" 
+                    name="title" 
+                    {...register("title", {required:true})}/>
             </label>
 
             <label>Message
-                <input type="textarea" name="message" {...register("message")}/>
+                <input 
+                    type="textarea" 
+                    name="message" 
+                    {...register("message")}/>
             </label>
 
-            <input type="submit" value="Generate link"/>
-
+            <input 
+                type="submit" 
+                value="Generate link"/>
         </form>
     )
 }

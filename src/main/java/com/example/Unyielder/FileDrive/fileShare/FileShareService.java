@@ -53,7 +53,7 @@ public class FileShareService {
                 ZipEntry zipEntry = new ZipEntry(Objects.requireNonNull(file.getOriginalFilename()));
                 zos.putNextEntry(zipEntry);
 
-                byte[] bytes = new byte[1024];
+                byte[] bytes = new byte[2048];
                 int length;
                 while((length = inputStream.read(bytes)) > -1) {
                     zos.write(bytes, 0, length);
@@ -61,12 +61,9 @@ public class FileShareService {
 
             }
             BufferedInputStream zipFileInputStream = new BufferedInputStream(new FileInputStream(zipFile));
-
-            ObjectMetadata metadata = new ObjectMetadata();
-            metadata.setContentDisposition("attachment; filename=zipFile.zip");
-            //storeFile(path, "zipFile.zip", zipFileInputStream, metadata);
-            storeFile(path, "zipFile.zip", zipFile);
             zos.close();
+            storeFile(path, "zipFile.zip", zipFileInputStream, new ObjectMetadata());
+
         }
 
     }
@@ -77,14 +74,6 @@ public class FileShareService {
                 fileName,
                 inputStream,
                 metadata
-        );
-    }
-
-    private void storeFile(String path, String fileName, File file) {
-        s3.putObject(
-                path,
-                fileName,
-                file
         );
     }
 

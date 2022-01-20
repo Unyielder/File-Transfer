@@ -1,4 +1,4 @@
-package com.example.Unyielder.FileDrive.fileShare;
+package com.example.Unyielder.FileDrive.fileShare ;
 
 import com.amazonaws.services.iotevents.model.Input;
 import com.amazonaws.services.s3.AmazonS3;
@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URL;
+import java.time.Instant;
 import java.util.*;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -23,18 +25,20 @@ import org.springframework.web.multipart.MultipartRequest;
 public class FileShareService {
 
     private final AmazonS3 s3;
+    private final String bucketPath;
+    private String fileName;
 
     @Autowired
     public FileShareService(AmazonS3 s3) {
         this.s3 = s3;
+        this.bucketPath = String.format(
+                "%s/file-sharing",
+                Bucket.PROFILE_IMAGE.getBucketName()
+        );
     }
 
     public void upload(List<MultipartFile> fileArray) throws IOException {
         fileArray.forEach(file -> System.out.println(file.getOriginalFilename()));
-        String path = String.format(
-                "%s/file-sharing",
-                Bucket.PROFILE_IMAGE.getBucketName()
-        );
 
         if(fileArray.size() == 0) {
             throw new IllegalStateException("No file has been uploaded");
@@ -42,10 +46,18 @@ public class FileShareService {
         } else if(fileArray.size() == 1) {
             MultipartFile file = fileArray.get(0);
             ObjectMetadata metadata = getMetadata(file);
-            storeFile(path, file.getOriginalFilename(), file.getInputStream(), metadata);
+            this.fileName = file.getOriginalFilename() + "-" + UUID.randomUUID();
+            storeFile(this.bucketPath, fileName, file.getInputStream(), metadata);
+
+            System.out.println("Generating download link...");
+            String link = getDownloadLink();
+            System.out.println("Finished!");
+            System.out.println(link);
 
         } else {
-            File zipFile = new File("zipFile.zip");
+            this.fileName = "zip-" + UUID.randomUUID();
+            File zipFile = new File(this.fileName);
+
             ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(zipFile)));
             for(MultipartFile file : fileArray) {
                 InputStream inputStream = file.getInputStream();
@@ -62,10 +74,22 @@ public class FileShareService {
             }
             BufferedInputStream zipFileInputStream = new BufferedInputStream(new FileInputStream(zipFile));
             zos.close();
-            storeFile(path, "zipFile.zip", zipFileInputStream, new ObjectMetadata());
-
+            storeFile(this.bucketPath, this.fileName, zipFileInputStream, new ObjectMetadata());
+            System.out.println("Generating download link...");
+            String link = getDownloadLink();
+            System.out.println("Finished!");
+            System.out.println(link);
         }
+    }
 
+    public String getDownloadLink() {
+        Date expiration = new Date();
+        long expirationTime = Instant.now().toEpochMilli();
+        expirationTime += 1000 * 60 * 5; // 5 minutes
+        expiration.setTime(expirationTime);
+
+        URL url = s3.generatePresignedUrl(this.bucketPath, this.fileName, expiration);
+        return url.toString();
     }
 
     private void storeFile(String path, String fileName, InputStream inputStream, ObjectMetadata metadata) {
@@ -92,4 +116,5 @@ public class FileShareService {
         });
         return objMetadata;
     }
+
 }

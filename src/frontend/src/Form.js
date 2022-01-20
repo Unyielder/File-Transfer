@@ -25,11 +25,21 @@ export default function Form({ files }) {
                 }
             ).then(() => {
                 console.log("Upload Successful!");
+                getDownloadLink();
+                
             }).catch((err) => {
                 console.log("Unable to upload file", err);
             })
         }
     }
+
+    const getDownloadLink = () => {
+        axios.get("http://localhost:8080/file-sharing/download-link").then(res => {
+            console.log(res.data);
+        }).catch((err) => {
+            console.log("Couldn't retrieve download link...", err)
+        })
+    }   
 
     return (
         

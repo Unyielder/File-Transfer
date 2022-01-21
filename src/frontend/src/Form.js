@@ -11,12 +11,14 @@ export default function Form({ files }) {
         formData.append("file", file);
     })
     
-    const onSubmit = () => {
+    const onSubmit = (input) => {
+        console.log(input.title);
+        console.log(input.message)
         if(!formData.get("file")) {
             alert("You need to attach atleast 1 file before submitting.")
         } else {
             axios.post(
-                "http://localhost:8080/file-sharing/upload",
+                `http://localhost:8080/file-sharing/upload/${input.title}/${input.message ? input.message : null}`,
                 formData,
                 {
                     "headers": {
@@ -34,7 +36,7 @@ export default function Form({ files }) {
     }
 
     const getDownloadLink = () => {
-        axios.get("http://localhost:8080/file-sharing/download-link").then(res => {
+        axios.get("http://localhost:8080/file-sharing/download").then(res => {
             console.log(res.data);
         }).catch((err) => {
             console.log("Couldn't retrieve download link...", err)
@@ -43,7 +45,7 @@ export default function Form({ files }) {
 
     return (
         
-        <form className="Form" onSubmit={handleSubmit(() => onSubmit())}>
+        <form className="Form" onSubmit={handleSubmit(onSubmit)}>
             <label>Title
                 <input 
                     type="text" 

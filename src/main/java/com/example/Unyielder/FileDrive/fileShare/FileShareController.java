@@ -21,18 +21,22 @@ public class FileShareController {
     }
 
     @PostMapping(
-            path= "upload",
+            path= "upload/{title}/{message}",
             consumes= MediaType.MULTIPART_FORM_DATA_VALUE,
             produces= MediaType.APPLICATION_JSON_VALUE
     )
-    public void fileUpload(@RequestParam("file") List<MultipartFile> fileArray) throws IOException {
-        fileShareService.upload(fileArray);
+    public void fileUpload(
+            @RequestParam("file") List<MultipartFile> fileArray,
+            @PathVariable("title") String title,
+            @PathVariable(required=false) String message) throws IOException {
+        fileShareService.upload(fileArray, title, message);
     }
 
-    @GetMapping("download-link")
+    @GetMapping("download")
     public String getDownloadLink() {
         return fileShareService.getDownloadLink();
     }
+
 
 
 }

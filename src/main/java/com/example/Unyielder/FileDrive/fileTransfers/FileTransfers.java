@@ -22,7 +22,7 @@ public class FileTransfers {
     @Column(name="title", nullable = false)
     private String title;
 
-    @Column(name="message", nullable=false)
+    @Column(name="message")
     private String message;
 
     @Column(name="download_link", nullable = false, unique = true)
@@ -32,14 +32,6 @@ public class FileTransfers {
     private Date linkCreationDate;
 
     public FileTransfers() {
-    }
-
-    public FileTransfers(Integer id, String title, String message, String downloadLink, Date linkCreationDate) {
-        this.id = id;
-        this.title = title;
-        this.message = message;
-        this.downloadLink = downloadLink;
-        this.linkCreationDate = linkCreationDate;
     }
 
     public FileTransfers(String title, String message, String downloadLink, Date linkCreationDate) {

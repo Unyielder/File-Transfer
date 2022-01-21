@@ -1,15 +1,14 @@
 package com.example.Unyielder.FileDrive.fileShare ;
 
-import com.amazonaws.services.iotevents.model.Input;
+
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.util.IOUtils;
+import com.example.Unyielder.FileDrive.fileTransfers.FileTransfers;
+import com.example.Unyielder.FileDrive.fileTransfers.FileTransfersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.time.Instant;
@@ -19,7 +18,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import com.example.Unyielder.FileDrive.bucket.Bucket;
-import org.springframework.web.multipart.MultipartRequest;
+
 
 @Service
 public class FileShareService {
@@ -37,22 +36,22 @@ public class FileShareService {
         );
     }
 
-    public void upload(List<MultipartFile> fileArray) throws IOException {
+    public void upload(List<MultipartFile> fileArray, String title, String message) throws IOException {
         fileArray.forEach(file -> System.out.println(file.getOriginalFilename()));
+        System.out.println(title);
+        System.out.println(message);
+
+        InputStream stream;
+        ObjectMetadata metadata;
 
         if(fileArray.size() == 0) {
             throw new IllegalStateException("No file has been uploaded");
 
         } else if(fileArray.size() == 1) {
             MultipartFile file = fileArray.get(0);
-            ObjectMetadata metadata = getMetadata(file);
+            stream = file.getInputStream();
+            metadata = getMetadata(file);
             this.fileName = file.getOriginalFilename() + "-" + UUID.randomUUID();
-            storeFile(this.bucketPath, fileName, file.getInputStream(), metadata);
-
-            System.out.println("Generating download link...");
-            String link = getDownloadLink();
-            System.out.println("Finished!");
-            System.out.println(link);
 
         } else {
             this.fileName = "zip-" + UUID.randomUUID();
@@ -70,16 +69,21 @@ public class FileShareService {
                 while((length = inputStream.read(bytes)) > -1) {
                     zos.write(bytes, 0, length);
                 }
-
             }
-            BufferedInputStream zipFileInputStream = new BufferedInputStream(new FileInputStream(zipFile));
+            stream = new BufferedInputStream(new FileInputStream(zipFile));
             zos.close();
-            storeFile(this.bucketPath, this.fileName, zipFileInputStream, new ObjectMetadata());
-            System.out.println("Generating download link...");
-            String link = getDownloadLink();
-            System.out.println("Finished!");
-            System.out.println(link);
+            metadata = new ObjectMetadata();
         }
+
+        storeFile(this.bucketPath, this.fileName, stream, metadata);
+        String link = getDownloadLink();
+        System.out.println(link);
+
+        // Store in database
+//        FileTransfers fileTransfer = new FileTransfers(
+//
+//        )
+//        FileTransfersRepository.save()
     }
 
     public String getDownloadLink() {

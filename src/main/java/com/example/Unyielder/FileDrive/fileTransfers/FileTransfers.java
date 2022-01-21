@@ -2,8 +2,8 @@ package com.example.Unyielder.FileDrive.fileTransfers;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table
+@Entity(name = "FileTransfers")
+@Table()
 public class FileTransfers {
 
     @Id
@@ -16,11 +16,19 @@ public class FileTransfers {
             strategy = GenerationType.SEQUENCE,
             generator = "fileTransfers_sequence"
     )
-
+    @Column(name="id", updatable = false)
     private Integer id;
+
+    @Column(name="title", nullable = false)
     private String title;
+
+    @Column(name="message", nullable=false)
     private String message;
+
+    @Column(name="download_link", nullable = false, unique = true)
     private String downloadLink;
+
+    @Column(name="link_creation_date", nullable = false)
     private Date linkCreationDate;
 
     public FileTransfers() {

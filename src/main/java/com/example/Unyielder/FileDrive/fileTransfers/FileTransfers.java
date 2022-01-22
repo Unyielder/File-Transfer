@@ -1,6 +1,6 @@
 package com.example.Unyielder.FileDrive.fileTransfers;
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity(name = "FileTransfers")
 @Table()
@@ -17,31 +17,31 @@ public class FileTransfers {
             generator = "fileTransfers_sequence"
     )
     @Column(name="id", updatable = false)
-    private Integer id;
+    private Long id;
 
-    @Column(name="title", nullable = false)
+    @Column(name="title", columnDefinition="TEXT", nullable = false)
     private String title;
 
-    @Column(name="message")
+    @Column(name="message", columnDefinition="TEXT")
     private String message;
 
-    @Column(name="download_link", nullable = false, unique = true)
+    @Column(name="download_link", columnDefinition="TEXT", nullable = false, unique = true)
     private String downloadLink;
 
     @Column(name="link_creation_date", nullable = false)
-    private Date linkCreationDate;
+    private LocalDate linkCreationDate;
 
     public FileTransfers() {
     }
 
-    public FileTransfers(String title, String message, String downloadLink, Date linkCreationDate) {
+    public FileTransfers(String title, String message, String downloadLink, LocalDate linkCreationDate) {
         this.title = title;
         this.message = message;
         this.downloadLink = downloadLink;
         this.linkCreationDate = linkCreationDate;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -57,7 +57,7 @@ public class FileTransfers {
         return downloadLink;
     }
 
-    public Date getLinkCreationDate() {
+    public LocalDate getLinkCreationDate() {
         return linkCreationDate;
     }
 
@@ -73,7 +73,7 @@ public class FileTransfers {
         this.downloadLink = downloadLink;
     }
 
-    public void setLinkCreationDate(Date linkCreationDate) {
+    public void setLinkCreationDate(LocalDate linkCreationDate) {
         this.linkCreationDate = linkCreationDate;
     }
 }

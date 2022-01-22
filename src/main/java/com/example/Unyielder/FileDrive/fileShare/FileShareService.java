@@ -6,7 +6,6 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.Unyielder.FileDrive.fileTransfers.FileTransfers;
 import com.example.Unyielder.FileDrive.fileTransfers.FileTransfersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
@@ -16,6 +15,7 @@ import java.util.*;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import java.time.*;
 
 import com.example.Unyielder.FileDrive.bucket.Bucket;
 
@@ -24,12 +24,14 @@ import com.example.Unyielder.FileDrive.bucket.Bucket;
 public class FileShareService {
 
     private final AmazonS3 s3;
+    private final FileTransfersRepository fileTransfersRepository;
     private final String bucketPath;
     private String fileName;
 
     @Autowired
-    public FileShareService(AmazonS3 s3) {
+    public FileShareService(AmazonS3 s3, FileTransfersRepository fileTransfersRepository) {
         this.s3 = s3;
+        this.fileTransfersRepository = fileTransfersRepository;
         this.bucketPath = String.format(
                 "%s/file-sharing",
                 Bucket.PROFILE_IMAGE.getBucketName()
@@ -80,10 +82,8 @@ public class FileShareService {
         System.out.println(link);
 
         // Store in database
-//        FileTransfers fileTransfer = new FileTransfers(
-//
-//        )
-//        FileTransfersRepository.save()
+        FileTransfers fileTransferRecord = new FileTransfers(title, message, link, LocalDate.now());
+        fileTransfersRepository.save(fileTransferRecord);
     }
 
     public String getDownloadLink() {

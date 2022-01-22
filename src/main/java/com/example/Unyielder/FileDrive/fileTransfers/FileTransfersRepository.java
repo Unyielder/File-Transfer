@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface FileTransfersRepository extends JpaRepository<FileTransfers, Integer> {
+public interface FileTransfersRepository extends JpaRepository<FileTransfers, Long> {
 }

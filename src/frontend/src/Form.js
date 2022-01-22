@@ -1,10 +1,12 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 export default function Form({ files }) {
     const {register, handleSubmit} = useForm();
+    const navigate = useNavigate();
     const formData = new FormData();
 
     files.forEach(file => {
@@ -29,8 +31,8 @@ export default function Form({ files }) {
                 }
             ).then(() => {
                 console.log("Upload Successful!");
-                // getDownloadLink();
-                
+                navigate(`../link/${uuid}`, { state: { uuid } });
+
             }).catch((err) => {
                 console.log("Unable to upload file", err);
             })

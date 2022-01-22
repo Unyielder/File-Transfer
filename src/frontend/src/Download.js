@@ -3,12 +3,8 @@ import axios from "axios";
 
 export default function Download() {
 
-    const getDownloadLink = () => {
-        axios.get("http://localhost:8080/file-sharing/download").then(res => {
-            console.log(res.data);
-        }).catch((err) => {
-            console.log("Couldn't retrieve download link...", err)
-        })
+    const getFileTransferData = async () => {
+        await fetch("")
     }
 
     return (

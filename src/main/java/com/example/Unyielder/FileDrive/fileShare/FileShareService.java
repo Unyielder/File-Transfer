@@ -38,8 +38,9 @@ public class FileShareService {
         );
     }
 
-    public void upload(List<MultipartFile> fileArray, String title, String message) throws IOException {
+    public void upload(List<MultipartFile> fileArray, UUID uuid, String title, String message) throws IOException {
         fileArray.forEach(file -> System.out.println(file.getOriginalFilename()));
+        System.out.println(uuid);
         System.out.println(title);
         System.out.println(message);
 
@@ -82,7 +83,7 @@ public class FileShareService {
         System.out.println(link);
 
         // Store in database
-        FileTransfers fileTransferRecord = new FileTransfers(title, message, link, LocalDate.now());
+        FileTransfers fileTransferRecord = new FileTransfers(uuid, title, message, link, LocalDate.now());
         fileTransfersRepository.save(fileTransferRecord);
     }
 

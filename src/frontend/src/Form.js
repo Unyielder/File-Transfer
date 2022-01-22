@@ -14,11 +14,13 @@ export default function Form({ files }) {
     const onSubmit = (input) => {
         console.log(input.title);
         console.log(input.message)
+       
         if(!formData.get("file")) {
             alert("You need to attach atleast 1 file before submitting.")
         } else {
+            const uuid = crypto.randomUUID();
             axios.post(
-                `http://localhost:8080/file-sharing/upload/${input.title}/${input.message ? input.message : null}`,
+                `http://localhost:8080/file-sharing/upload/${uuid}/${input.title}/${input.message ? input.message : null}`,
                 formData,
                 {
                     "headers": {
@@ -27,7 +29,7 @@ export default function Form({ files }) {
                 }
             ).then(() => {
                 console.log("Upload Successful!");
-                getDownloadLink();
+                // getDownloadLink();
                 
             }).catch((err) => {
                 console.log("Unable to upload file", err);
@@ -35,19 +37,14 @@ export default function Form({ files }) {
         }
     }
 
-    const getDownloadLink = () => {
-        axios.get("http://localhost:8080/file-sharing/download").then(res => {
-            console.log(res.data);
-        }).catch((err) => {
-            console.log("Couldn't retrieve download link...", err)
-        })
-    }   
+       
 
     return (
         
         <form className="Form" onSubmit={handleSubmit(onSubmit)}>
             <label>Title
                 <input 
+                    value="test title"
                     type="text" 
                     name="title" 
                     {...register("title", {required:true})}/>
@@ -55,6 +52,7 @@ export default function Form({ files }) {
 
             <label>Message
                 <input 
+                    value="test message"
                     type="textarea" 
                     name="message" 
                     {...register("message")}/>

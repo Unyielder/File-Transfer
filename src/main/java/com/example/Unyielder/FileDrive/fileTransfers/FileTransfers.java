@@ -1,6 +1,7 @@
 package com.example.Unyielder.FileDrive.fileTransfers;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity(name = "FileTransfers")
 @Table()
@@ -19,6 +20,9 @@ public class FileTransfers {
     @Column(name="id", updatable = false)
     private Long id;
 
+    @Column(name="uuid", columnDefinition="UUID",updatable = false, unique = true)
+    private UUID uuid;
+
     @Column(name="title", columnDefinition="TEXT", nullable = false)
     private String title;
 
@@ -34,7 +38,8 @@ public class FileTransfers {
     public FileTransfers() {
     }
 
-    public FileTransfers(String title, String message, String downloadLink, LocalDate linkCreationDate) {
+    public FileTransfers(UUID uuid, String title, String message, String downloadLink, LocalDate linkCreationDate) {
+        this.uuid = uuid;
         this.title = title;
         this.message = message;
         this.downloadLink = downloadLink;
@@ -43,6 +48,10 @@ public class FileTransfers {
 
     public Long getId() {
         return id;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     public String getTitle() {
@@ -59,6 +68,10 @@ public class FileTransfers {
 
     public LocalDate getLinkCreationDate() {
         return linkCreationDate;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public void setTitle(String title) {

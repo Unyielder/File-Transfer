@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/file-sharing")
@@ -21,15 +22,16 @@ public class FileShareController {
     }
 
     @PostMapping(
-            path= "upload/{title}/{message}",
+            path= "upload/{uuid}/{title}/{message}",
             consumes= MediaType.MULTIPART_FORM_DATA_VALUE,
             produces= MediaType.APPLICATION_JSON_VALUE
     )
     public void fileUpload(
             @RequestParam("file") List<MultipartFile> fileArray,
+            @PathVariable("uuid") UUID uuid,
             @PathVariable("title") String title,
             @PathVariable(required=false) String message) throws IOException {
-        fileShareService.upload(fileArray, title, message);
+        fileShareService.upload(fileArray, uuid, title, message);
     }
 
     @GetMapping("download")

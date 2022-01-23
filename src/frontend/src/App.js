@@ -12,9 +12,10 @@ function App() {
       <div className="App">
         <h1>Welcome to FileDrive!</h1> 
           <Routes>
-            <Route path="/upload" element={<Dropzone/>}/>
-            <Route path="/link" element={<Link />}/>
-            <Route path="/download" element={<Download />}/> 
+            {/* <Route path ="/" element={<App/>}/> */}
+            <Route path="upload" element={<Dropzone/>}/>
+            <Route path="upload/link/:id" element={<Link />}/>
+            <Route path="download" element={<Download />}/> 
           </Routes>
       </div>
     </BrowserRouter>

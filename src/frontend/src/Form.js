@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Link from './Link'
 
 
 export default function Form({ files }) {
@@ -31,7 +33,10 @@ export default function Form({ files }) {
                 }
             ).then(() => {
                 console.log("Upload Successful!");
-                navigate(`../link/${uuid}`, { state: { uuid } });
+                // <Routes>
+                //     <Route path={`link/${uuid}`} element={<Link />}/>
+                // </Routes>
+                navigate(`link/${uuid}`, { state: { uuid } });
 
             }).catch((err) => {
                 console.log("Unable to upload file", err);

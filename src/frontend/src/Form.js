@@ -33,10 +33,7 @@ export default function Form({ files }) {
                 }
             ).then(() => {
                 console.log("Upload Successful!");
-                // <Routes>
-                //     <Route path={`link/${uuid}`} element={<Link />}/>
-                // </Routes>
-                navigate(`link/${uuid}`, { state: { uuid } });
+                navigate(`link/${uuid}`, { state: { uuid: uuid, files: files } });
 
             }).catch((err) => {
                 console.log("Unable to upload file", err);

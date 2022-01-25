@@ -15,7 +15,7 @@ function App() {
             {/* <Route path ="/" element={<App/>}/> */}
             <Route path="upload" element={<Dropzone/>}/>
             <Route path="upload/link/:id" element={<Link />}/>
-            <Route path="download" element={<Download />}/> 
+            <Route path="download/:id" element={<Download />}/> 
           </Routes>
       </div>
     </BrowserRouter>

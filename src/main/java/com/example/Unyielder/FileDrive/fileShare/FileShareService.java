@@ -97,6 +97,10 @@ public class FileShareService {
         return url.toString();
     }
 
+    public FileTransfers getTransferData(UUID uuid) {
+        return fileTransfersRepository.findByUuid(uuid);
+    }
+
     private void storeFile(String path, String fileName, InputStream inputStream, ObjectMetadata metadata) {
         s3.putObject(
                 path,

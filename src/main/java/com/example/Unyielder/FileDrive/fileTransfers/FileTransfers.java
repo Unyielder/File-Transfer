@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity(name = "FileTransfers")
+@Entity(name = "file_transfers")
 @Table()
 public class FileTransfers {
 

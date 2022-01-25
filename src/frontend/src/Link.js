@@ -15,9 +15,10 @@ export default function Link() {
 
             
             {files.map(file => (
-                <li key={files.indexOf(file)}>{
-                    file.name}
+                <li key={files.indexOf(file)}>
+                    {file.name}
                 </li>
+
             ))}
             
 

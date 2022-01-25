@@ -1,5 +1,6 @@
 package com.example.Unyielder.FileDrive.fileShare;
 
+import com.example.Unyielder.FileDrive.fileTransfers.FileTransfers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -34,9 +35,9 @@ public class FileShareController {
         fileShareService.upload(fileArray, uuid, title, message);
     }
 
-    @GetMapping("download")
-    public String getDownloadLink() {
-        return fileShareService.getDownloadLink();
+    @GetMapping("download/{uuid}")
+    public FileTransfers getDownloadLink(@PathVariable("uuid") UUID uuid) {
+        return fileShareService.getTransferData(uuid);
     }
 
 

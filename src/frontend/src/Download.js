@@ -26,21 +26,18 @@ export default function Download() {
         try {
             const res = await axios.get(`http://localhost:8080/file-sharing/download/${uuid}`)
             console.log(res.data);
-            setDownloadLink(res.data.downloadLink);
-            setTitle(res.data.title);
-            setMessage(res.data.message);
-
-            const today = new Date();
-            const linkCreationDate = new Date(res.data.linkCreationDate);
-            console.log(today.getTime());
-            console.log(linkCreationDate.getTime());
             
+            const linkCreationDate = new Date(res.data.linkCreationDate);
+            const today = new Date();
             const diffInDays = (today.getTime() - linkCreationDate.getTime()) / (1000 * 3600 * 24);
-            console.log("difference in days: ", diffInDays);
-
-            if(diffInDays >= 1) {
+            if(diffInDays >= 7) {
                 navigate("/expired");
+            } else {
+                setDownloadLink(res.data.downloadLink);
+                setTitle(res.data.title);
+                setMessage(res.data.message);
             }
+            
         } catch(e) {
             console.log("Couldn't retrieve download link", e);
         }

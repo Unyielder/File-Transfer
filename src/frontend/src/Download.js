@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Download() {
     const location = useLocation();
-
     const [downloadLink, setDownloadLink] = useState("");
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
+    const navigate = useNavigate();
     
     useEffect(() => {
         const path = location.pathname;
@@ -19,14 +20,27 @@ export default function Download() {
         
     }, [])
 
+   
+
     const getFileTransferData = async (uuid) => {
-    
         try {
             const res = await axios.get(`http://localhost:8080/file-sharing/download/${uuid}`)
             console.log(res.data);
             setDownloadLink(res.data.downloadLink);
             setTitle(res.data.title);
             setMessage(res.data.message);
+
+            const today = new Date();
+            const linkCreationDate = new Date(res.data.linkCreationDate);
+            console.log(today.getTime());
+            console.log(linkCreationDate.getTime());
+            
+            const diffInDays = (today.getTime() - linkCreationDate.getTime()) / (1000 * 3600 * 24);
+            console.log("difference in days: ", diffInDays);
+
+            if(diffInDays >= 1) {
+                navigate("/expired");
+            }
         } catch(e) {
             console.log("Couldn't retrieve download link", e);
         }

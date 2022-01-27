@@ -1,3 +1,4 @@
+import Navbar from './Navbar';
 import Dropzone from './Dropzone';
 import Download from './Download';
 import Link from './Link';
@@ -10,7 +11,11 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div>
+      <Navbar />
+        <div className="container">
+
+        
           <Routes>
             {/* <Route path ="/" element={<App/>}/> */}
             <Route path="upload" element={<Dropzone/>}/>
@@ -18,6 +23,7 @@ function App() {
             <Route path="download/:id" element={<Download />}/> 
             <Route path="expired" element={<Expired />}/>
           </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );

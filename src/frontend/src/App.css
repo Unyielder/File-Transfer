@@ -1,12 +1,53 @@
-.App {
-  text-align: center;
+.nav {
+  background-color: #fbfdff;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+
+.container {
+  width: 700px;
+  margin: auto;
+  padding: 50px;
+  background-color: #fbfdff;
+  margin-top: 60px;
 }
 
 .upload-icon {
   width: 100px;
+  margin-bottom: 10px;
+}
+
+.upload-here {
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 .file-item {
-  
+  padding: 15px;
+  list-style-type: none;
+  border-bottom: 1px solid #77777780;
+}
+.file-item:first-child {
+  border-top: 1px solid #77777780;;
+}
+.file-metadata {
+  font-weight:lighter;
+}
+
+.form {
+  margin-top:15px;
+  text-align: center;
+}
+
+.input-title {
+  display: block;
+
+}
+
+.input-message {
+  display: block;
 }
 
 

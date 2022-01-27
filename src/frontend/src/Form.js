@@ -45,9 +45,10 @@ export default function Form({ files }) {
 
     return (
         
-        <form className="Form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <label>Title
                 <input 
+                    className="input-title"
                     value="test title"
                     type="text" 
                     name="title" 
@@ -56,7 +57,7 @@ export default function Form({ files }) {
 
             <label>Message
                 <input 
-                    // value="test message"
+                    className="input-message"
                     type="textarea" 
                     name="message" 
                     {...register("message")}/>

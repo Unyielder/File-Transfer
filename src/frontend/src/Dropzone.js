@@ -18,10 +18,10 @@ export default function Dropzone() {
 
     const convertBytes = (bytes) => {
         if(bytes.toString().length <= 6) {
-            return [(bytes/1000).toFixed(1), "kb"];    
+            return [(bytes/1000).toFixed(1), " kb"];    
         } 
         else if(bytes.toString().length > 6) {
-            return [(bytes/1000000).toFixed(1), "mb"];
+            return [(bytes/1000000).toFixed(1), " mb"];
         }
     }
 
@@ -29,12 +29,11 @@ export default function Dropzone() {
 
     return (
         <div>
-            <h1>Welcome to FileDrive!</h1> 
             <div {...getRootProps()} className="input-area">
                 {
                     <div>
-                        <p className="input-text">Drop the files here ...</p>
                         <img className="upload-icon" src={addLogo} alt="upload icon"/>
+                        <p className="upload-here">Upload files here</p>
                     </div>
                 }
                 <input {...getInputProps()} />
@@ -42,10 +41,9 @@ export default function Dropzone() {
 
 
             <div>
-                <h3>Files :</h3>
                 {files.map(file => (
                     <li className="file-item" key={files.indexOf(file)}>
-                        {file.name} | {convertBytes(file.size)} | {file.type}
+                        {file.name} <br/> <span className="file-metadata">{convertBytes(file.size)}</span> - <span className="file-metadata">{file.type}</span>
                     </li>
                 ))}
 

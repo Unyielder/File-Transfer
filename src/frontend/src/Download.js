@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Download() {
     const location = useLocation();
+    
     const [downloadLink, setDownloadLink] = useState("");
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
@@ -37,9 +38,9 @@ export default function Download() {
                 setTitle(res.data.title);
                 setMessage(res.data.message);
             }
-            
+
         } catch(e) {
-            console.log("Couldn't retrieve download link", e);
+            navigate("/expired");
         }
         
         

@@ -11,7 +11,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>Welcome to FileDrive!</h1> 
           <Routes>
             {/* <Route path ="/" element={<App/>}/> */}
             <Route path="upload" element={<Dropzone/>}/>

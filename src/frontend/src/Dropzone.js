@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Form from './Form';
 import "./App.css";
+import addLogo from './images/plus.png'
 
 
 export default function Dropzone() {
@@ -19,11 +20,12 @@ export default function Dropzone() {
 
     return (
         <div>
+            <h1>Welcome to FileDrive!</h1> 
             <div {...getRootProps()} className="input-area">
                 {
                     <div>
                         <p className="input-text">Drop the files here ...</p>
-                        {/* <p> drop next file here </p> */}
+                        <img className="upload-icon" src={addLogo} alt="upload icon"/>
                     </div>
                 }
                 <input {...getInputProps()} />

@@ -43,6 +43,7 @@ public class FileShareService {
         System.out.println(uuid);
         System.out.println(title);
         System.out.println(message);
+        if(message.equals("null")) message = null;
 
         InputStream stream;
         ObjectMetadata metadata;

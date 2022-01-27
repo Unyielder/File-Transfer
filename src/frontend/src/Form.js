@@ -56,7 +56,7 @@ export default function Form({ files }) {
 
             <label>Message
                 <input 
-                    value="test message"
+                    // value="test message"
                     type="textarea" 
                     name="message" 
                     {...register("message")}/>

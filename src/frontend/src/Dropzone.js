@@ -16,6 +16,15 @@ export default function Dropzone() {
         setFiles(allFiles);
     };
 
+    const convertBytes = (bytes) => {
+        if(bytes.toString().length <= 6) {
+            return [(bytes/1000).toFixed(1), "kb"];    
+        } 
+        else if(bytes.toString().length > 6) {
+            return [(bytes/1000000).toFixed(1), "mb"];
+        }
+    }
+
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
     return (
@@ -35,8 +44,8 @@ export default function Dropzone() {
             <div>
                 <h3>Files :</h3>
                 {files.map(file => (
-                    <li key={files.indexOf(file)}>
-                        {file.name}
+                    <li className="file-item" key={files.indexOf(file)}>
+                        {file.name} | {convertBytes(file.size)} | {file.type}
                     </li>
                 ))}
 

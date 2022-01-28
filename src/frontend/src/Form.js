@@ -46,26 +46,38 @@ export default function Form({ files }) {
     return (
         
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
-            <label>Title
-                <input 
-                    className="input-title"
+            
+            <div className="title">
+                <label className="label">Title</label>
+                <p className="label-desc">Describe your transfer</p>
+                <input
+                    className="input input-title"
                     value="test title"
                     type="text" 
                     name="title" 
                     {...register("title", {required:true})}/>
-            </label>
+            </div>
 
-            <label>Message
+            <div className="message">
+                <label className="label">Message </label>
+                <p className="label-desc">Add a message to your transfer</p>
                 <input 
-                    className="input-message"
+                    className="input input-message"
                     type="textarea" 
                     name="message" 
                     {...register("message")}/>
-            </label>
+            </div>
 
-            <input 
-                type="submit" 
-                value="Generate link"/>
+            <div className="form-buttons">
+                <input 
+                    className="button button-restart"
+                    type="button" 
+                    value="Restart"/>
+                <input 
+                    className="button button-submit"
+                    type="submit" 
+                    value="Generate link"/>
+            </div>
         </form>
     )
 }

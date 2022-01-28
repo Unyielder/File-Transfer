@@ -29,27 +29,36 @@ export default function Dropzone() {
 
     return (
         <div>
-            <div {...getRootProps()} className="input-area">
-                {
-                    <div>
-                        <img className="upload-icon" src={addLogo} alt="upload icon"/>
-                        <p className="upload-here">Upload files here</p>
+            <div className="upload-container">
+            <div {...getRootProps()} className="upload">
+                
+                    <div className="upload-image">
+                        <img className="add-img" src={addLogo} alt="upload icon"/>
                     </div>
-                }
+                    <div className="upload-here">
+                        <p>
+                            {
+                                files.length == 0 ?
+                                <span>Upload files here</span> :
+                                <span>Add more files</span>
+                            }  
+                        </p>
+                    </div>
+                
                 <input {...getInputProps()} />
             </div>
 
 
-            <div>
+            <div className="file-list">
                 {files.map(file => (
                     <li className="file-item" key={files.indexOf(file)}>
                         {file.name} <br/> <span className="file-metadata">{convertBytes(file.size)}</span> - <span className="file-metadata">{file.type}</span>
                     </li>
                 ))}
-
-                <Form files={files}/>  
-
             </div>
+            </div>
+            <Form files={files}/> 
         </div>
+        
     );
 }

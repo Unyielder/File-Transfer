@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Link from './Link'
+import Popup from "./Popup";
 
 
 export default function Form({ files }) {
@@ -27,7 +27,14 @@ export default function Form({ files }) {
             alert("You need to attach atleast 1 file before submitting.")
         } else {
             const uuid = crypto.randomUUID();
-            axios.post(
+            upload(uuid, input);
+
+        }
+    }
+
+    const upload = async (uuid, input) => {
+        try {
+            const post = await axios.post(
                 `http://localhost:8080/file-sharing/upload/${uuid}/${input.title}/${input.message ? input.message : null}`,
                 formData,
                 {
@@ -35,17 +42,14 @@ export default function Form({ files }) {
                         "Content-Type": "multipart/form-data"
                     }
                 }
-            ).then(() => {
-                console.log("Upload Successful!");
-                navigate(`link/${uuid}`, { state: { uuid: uuid, files: files } });
-
-            }).catch((err) => {
-                console.log("Unable to upload file", err);
-            })
+            )
+            console.log("Upload Successful!");
+            navigate(`link/${uuid}`, { state: { uuid: uuid, files: files } });
+        } catch(err) {
+            console.log("Unable to upload file", err);
         }
+        
     }
-
-       
 
     return (
         

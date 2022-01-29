@@ -65,7 +65,7 @@ export default function Form({ files }) {
             <div className="message">
                 <label className="label">Message </label>
                 <p className="label-desc">Add a message to your transfer</p>
-                <input 
+                <textarea
                     className="input input-message"
                     type="textarea" 
                     name="message" 

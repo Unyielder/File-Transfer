@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Form from './Form';
 import "./App.css";
-import addLogo from './images/plus.png'
 
 
 export default function Dropzone() {
@@ -43,8 +42,6 @@ export default function Dropzone() {
                 
                     <div className="upload-image">
                         <i className="fas fa-plus-circle"></i>
-                        {/* <i class="fa-solid fa-circle-plus"></i> */}
-                        {/* <img className="add-img" src={addLogo} alt="upload icon"/> */}
                     </div>
                     <div className="upload-here">
                         <p>
@@ -56,8 +53,15 @@ export default function Dropzone() {
                         </p>
                     </div>
                     <div className="upload-stats">
-                            <p>{files.length} <span className="upload-stats-label">files</span></p>
-                            <p>{getTotalSize()} <span className="upload-stats-label">total mb</span></p>
+                            
+                            {
+                                files.length == 0 ? null : <p>{files.length}<span className="upload-stats-label"> file(s)</span></p>
+                            }
+                                
+                            {
+                                files.length == 0 ? null : <p>{getTotalSize()} <span className="upload-stats-label">mb /1 gb</span></p>
+                            }
+                            
                     </div>
                 
                 <input {...getInputProps()} />
@@ -67,7 +71,9 @@ export default function Dropzone() {
             <div className="file-list">
                 {files.map(file => (
                     <li className="file-item" key={files.indexOf(file)}>
-                        {file.name} <br/> <span className="file-metadata">{convertBytes(file.size)}</span> - <span className="file-metadata">{file.type}</span>
+                        {file.name} <br/> 
+                        <span className="file-metadata">{convertBytes(file.size)}</span> - <span className="file-metadata">{file.type}</span>
+                        {/* <button className="delete">X</button> */}
                     </li>
                 ))}
             </div>

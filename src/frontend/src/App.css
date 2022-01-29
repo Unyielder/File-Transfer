@@ -36,14 +36,15 @@
   margin-bottom: 10px;
 }
 .fa-plus-circle {
-  font-size: 10px;
+  font-size: 50px;
+  color: #409fff;
 }
-.add-img {
-  width: 60px;
-  background:none;
-}
-.add-img:hover {
-  background: #005ab4;
+.fa-plus-circle:hover {
+  -moz-transition: all .15s ease-in;
+  -o-transition: all .15s ease-in;
+  -webkit-transition: all .15s ease-in;
+  transition: all .15s ease-in;
+  color: #005ab4;
 }
 
 .upload-here {

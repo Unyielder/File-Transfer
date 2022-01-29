@@ -9,10 +9,13 @@
 }
 
 .container {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
   width: 400px;
   margin: auto;
   background-color: #f2f2f3;
-  margin-top: 100px;
+  min-height: 100vh;
 }
 
 .upload-container, .title, .message {
@@ -73,17 +76,6 @@
 .file-metadata {
   font-weight:lighter;
 }
-
-
-/* .delete {
-  position: absolute;
-  left:300px;
-  bottom: 25px;
-  color: #fbfdff;
-  border: none;
-  background-color: #fbfdff;
-} */
-
 
 .form {
   text-align: center;
@@ -163,6 +155,10 @@
   border-color: #005ab4;
 }
 
+.fa-spinner {
+  font-size: 100px;
+  color: blue;
+}
 
 
 

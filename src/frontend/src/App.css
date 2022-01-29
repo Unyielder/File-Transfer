@@ -17,11 +17,16 @@
 .upload-container, .title, .message {
   background-color: #fbfdff;
   border: 1px solid #b8b7b780;
-  border-radius: 10px;
-  padding: 20px;
+  
+  padding: 25px;
   margin-bottom: 10px;
 
 }
+
+.upload-container, .title, .message, .button {
+  border-radius: 10px;
+}
+
 .upload {
   display: flex;
   justify-content: center;
@@ -30,14 +35,27 @@
   cursor: pointer;
   margin-bottom: 10px;
 }
-
+.fa-plus-circle {
+  font-size: 10px;
+}
 .add-img {
-  width: 90px;
+  width: 60px;
+  background:none;
+}
+.add-img:hover {
+  background: #005ab4;
 }
 
 .upload-here {
-  /* margin-bottom: 15px; */
   font-weight: bold;
+}
+
+.upload-stats-label {
+  font-weight:100;
+}
+.file-list {
+  max-height: 208px;
+  overflow-y: scroll;
 }
 
 .file-item {
@@ -87,11 +105,11 @@
   gap: 3%;
 }
 .button {
-  border: none;
+  
   width: 150px;
   height: 50px;
   font-size: 17px;
-  border-radius: 5px;
+  /* border-radius: 10px; */
 }
 
 .button:hover {
@@ -100,15 +118,33 @@
 
 .button-restart {
   background-color:#f2f2f3;
-  color: #147cf3;
-  /* border: 1px solid #147cf3; */
-  
+  color: #409fff;
+  border: none;
+}
+.button-restart:hover {
+  -moz-transition: all .15s ease-in;
+  -o-transition: all .15s ease-in;
+  -webkit-transition: all .15s ease-in;
+  transition: all .15s ease-in;
+  color: #005ab4;
 }
 
 .button-submit {
-  background-color:#147cf3;
+  background-color:#409fff;
+  border: 1px solid #409fff;
   color: white;
 }
+
+.button-submit:hover {
+  -moz-transition: all .15s ease-in;
+  -o-transition: all .15s ease-in;
+  -webkit-transition: all .15s ease-in;
+  transition: all .15s ease-in;
+
+  background-color:#005ab4;
+  border-color: #005ab4;
+}
+
 
 
 

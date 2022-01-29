@@ -25,6 +25,15 @@ export default function Dropzone() {
         }
     }
 
+    const getTotalSize = () => {
+        let totalSize = 0;
+        files.forEach(file => {
+            let mb = file.size/1000000;
+            totalSize += mb;
+        })
+        return totalSize.toFixed(2);
+    }
+
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
     return (
@@ -33,7 +42,9 @@ export default function Dropzone() {
             <div {...getRootProps()} className="upload">
                 
                     <div className="upload-image">
-                        <img className="add-img" src={addLogo} alt="upload icon"/>
+                        <i className="fas fa-plus-circle"></i>
+                        {/* <i class="fa-solid fa-circle-plus"></i> */}
+                        {/* <img className="add-img" src={addLogo} alt="upload icon"/> */}
                     </div>
                     <div className="upload-here">
                         <p>
@@ -43,6 +54,10 @@ export default function Dropzone() {
                                 <span>Add more files</span>
                             }  
                         </p>
+                    </div>
+                    <div className="upload-stats">
+                            <p>{files.length} <span className="upload-stats-label">files</span></p>
+                            <p>{getTotalSize()} <span className="upload-stats-label">total mb</span></p>
                     </div>
                 
                 <input {...getInputProps()} />

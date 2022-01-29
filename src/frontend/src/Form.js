@@ -14,6 +14,10 @@ export default function Form({ files }) {
     files.forEach(file => {
         formData.append("file", file);
     })
+
+    const restart = () => {
+        window.location.reload()
+    }
     
     const onSubmit = (input) => {
         console.log(input.title);
@@ -72,7 +76,8 @@ export default function Form({ files }) {
                 <input 
                     className="button button-restart"
                     type="button" 
-                    value="Restart"/>
+                    value="Restart"
+                    onClick={() => restart()}/>
                 <input 
                     className="button button-submit"
                     type="submit" 

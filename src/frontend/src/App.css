@@ -155,9 +155,30 @@
   border-color: #005ab4;
 }
 
-.fa-spinner {
+.fa-spinner{
   font-size: 100px;
-  color: blue;
+  color: #409fff;
+  animation: spin 1s infinite linear;
+}
+
+.popup {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-inner {
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  max-width:640px;
+  background-color:#f2f2f3;
 }
 
 

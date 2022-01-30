@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ export default function Form({ files }) {
     const {register, handleSubmit} = useForm();
     const navigate = useNavigate();
     const formData = new FormData();
+    const [isOpen, setIsOpen] = useState(false);
 
     files.forEach(file => {
         formData.append("file", file);
@@ -28,13 +29,13 @@ export default function Form({ files }) {
         } else {
             const uuid = crypto.randomUUID();
             upload(uuid, input);
-
+            setIsOpen(true);
         }
     }
 
     const upload = async (uuid, input) => {
         try {
-            const post = await axios.post(
+            await axios.post(
                 `http://localhost:8080/file-sharing/upload/${uuid}/${input.title}/${input.message ? input.message : null}`,
                 formData,
                 {
@@ -87,6 +88,11 @@ export default function Form({ files }) {
                     type="submit" 
                     value="Generate link"/>
             </div>
+            <Popup open={isOpen}>
+                Uploading...
+            </Popup>
         </form>
+
+        
     )
 }

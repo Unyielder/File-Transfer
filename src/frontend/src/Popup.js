@@ -1,11 +1,13 @@
 import react from "react";
 
-export default function Popup(props) {
-    return (props.trigger) ? (
+export default function Popup({ open, children }) {
+    if(!open) return null
+    return (
         <div className="popup">
             <div className="popup-inner">
-                { props.children }
+                <i className="fas fa-spinner"></i>
+                { children }
             </div>
         </div>        
-    ) : "";
+    ) 
 }

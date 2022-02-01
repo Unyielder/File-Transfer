@@ -36,7 +36,7 @@ export default function Dropzone() {
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
     return (
-        <div>
+        <div className="container">
             <div className="upload-container">
             <div {...getRootProps()} className="upload">
                 
@@ -55,12 +55,16 @@ export default function Dropzone() {
                     <div className="upload-stats">
                             
                             {
-                                files.length == 0 ? null : <p>{files.length}<span className="upload-stats-label"> file(s)</span></p>
+                                files.length == 0 ? 
+                                null : 
+                                <div>
+                                    <p>{files.length}<span className="upload-stats-label"> file(s)</span></p>
+                                    <p>{getTotalSize()} <span className="upload-stats-label">mb /1 gb</span></p>
+                                </div>
+                                
                             }
                                 
-                            {
-                                files.length == 0 ? null : <p>{getTotalSize()} <span className="upload-stats-label">mb /1 gb</span></p>
-                            }
+                            
                             
                     </div>
                 

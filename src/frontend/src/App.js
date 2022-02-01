@@ -13,8 +13,6 @@ function App() {
     <BrowserRouter>
       <div>
       <Navbar />
-        <div className="container">
-
         
           <Routes>
             {/* <Route path ="/" element={<App/>}/> */}
@@ -23,7 +21,7 @@ function App() {
             <Route path="download/:id" element={<Download />}/> 
             <Route path="expired" element={<Expired />}/>
           </Routes>
-        </div>
+      
       </div>
     </BrowserRouter>
   );

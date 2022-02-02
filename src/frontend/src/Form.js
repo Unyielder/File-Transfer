@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Popup from "./Popup";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Form({ files }) {
@@ -27,9 +28,23 @@ export default function Form({ files }) {
         if(!formData.get("file")) {
             alert("You need to attach atleast 1 file before submitting.")
         } else {
+            const btnSubmit = document.getElementById('btn-submit');
+            const btnRestart = document.getElementById('btn-restart');
+            btnSubmit.disabled = true;
+            btnRestart.disabled = true;
+
             const uuid = crypto.randomUUID();
             upload(uuid, input);
-            setIsOpen(true);
+            toast.info("Uploading please wait", {
+                position: "top-center",
+                autoClose: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: false,
+                progress: 1,
+                });
+            //setIsOpen(true);
+            
         }
     }
 
@@ -48,6 +63,15 @@ export default function Form({ files }) {
             navigate(`link/${uuid}`, { state: { uuid: uuid, files: files } });
         } catch(err) {
             console.log("Unable to upload file", err);
+            toast.error("Unable to upload file", {
+                position: "top-right",
+                autoClose: 5,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: 1,
+                });
         }
         
     }
@@ -80,17 +104,28 @@ export default function Form({ files }) {
             <div className="form-buttons">
                 <input 
                     className="button button-restart"
+                    id="btn-restart"
                     type="button" 
                     value="Restart"
                     onClick={() => restart()}/>
                 <input 
                     className="button button-submit"
+                    id="btn-submit"
                     type="submit" 
                     value="Generate link"/>
             </div>
-            <Popup open={isOpen}>
+            {/* <Popup open={isOpen}>
                 Uploading...
-            </Popup>
+            </Popup> */}
+            <ToastContainer
+            position="top-center"
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover
+            />
         </form>
 
         

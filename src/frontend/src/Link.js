@@ -1,5 +1,7 @@
 import react from "react";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./Link.css";
 
 
@@ -11,7 +13,17 @@ export default function Link() {
 
     const handleCopy = () => {
         navigator.clipboard.writeText(downloadURL);
+        toast.success("Copied", {
+            position: "top-right",
+            hideProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: false,
+            progress: 1,
+            limit:1
+            });
     }
+    
 
     return (
         <div className="link-container">
@@ -35,6 +47,16 @@ export default function Link() {
                 <button onClick={() => handleCopy()} id="copy-btn" readOnly>
                 <i className="fas fa-copy"></i>
                 </button>
+                <ToastContainer
+                    position="top-right"
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick={true}
+                    rtl
+                    pauseOnFocusLoss
+                    draggable={false}
+                    pauseOnHover
+                    />
 
             </div>
         </div>

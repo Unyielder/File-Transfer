@@ -35,14 +35,14 @@ export default function Form({ files }) {
 
             const uuid = crypto.randomUUID();
             upload(uuid, input);
-            toast.info("Uploading please wait", {
-                position: "top-center",
-                autoClose: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: false,
-                progress: 1,
-                });
+            toast.loading("Uploading please wait")
+                // position: "top-center",
+                // autoClose: false,
+                // closeOnClick: false,
+                // pauseOnHover: true,
+                // draggable: false,
+                // progress: 1,
+                // });
             //setIsOpen(true);
             
         }

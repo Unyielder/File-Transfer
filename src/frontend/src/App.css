@@ -4,6 +4,7 @@
   padding: 10px;
   width: 100%;
   border-bottom: 1px solid #b8b7b780;
+  margin-bottom: 100px;
 }
 
 .container {
@@ -11,8 +12,8 @@
   flex-direction: column;
   justify-content: center;
   width: 400px;
-  margin: auto;
-  min-height: 100vh;
+  margin: 0 auto;
+  /* min-height: 70vh; */
 }
 
 .upload-container, .title, .message {

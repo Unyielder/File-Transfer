@@ -11,22 +11,23 @@ export default function Dropzone() {
     let allFiles = [];
 
     const onDrop = acceptedFiles => {
-        if(isUniqueFileName(acceptedFiles, allFiles)) {
+        if(isUniqueFileName(acceptedFiles, files)) {
             console.log("all files unique")
             allFiles = [...files, ...acceptedFiles];
             console.log(allFiles);
 
-            setFiles(prev => allFiles);
+            setFiles(allFiles);
+            console.log("state: ", allFiles)
         }
         else {
-            toast.error("Can't have identical file names", {
-                position: "top",
-                autoClose: 5,
-                hideProgressBar: true,
+            toast.error("Files can't have identical names", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
-                draggable: false,
-                progress: 1,
+                draggable: true,
+                progress: undefined,
                 });
         }
         
@@ -36,7 +37,10 @@ export default function Dropzone() {
         const droppedFileNames = droppedFiles.map(file => file.name);
         const uploadedFileNames = uploadedFiles.map(file => file.name);
         const allFileNames = [...droppedFileNames, ...uploadedFileNames];
-
+        
+        console.log("raw size: ", allFileNames.length);
+        console.log("unique size: ", new Set(allFileNames).size);
+        
         return (new Set(allFileNames)).size == allFileNames.length;
     }
 
@@ -62,6 +66,7 @@ export default function Dropzone() {
 
     return (
         <div className="container">
+            <ToastContainer/>
             <div className="upload-container">
             <div {...getRootProps()} className="upload">
                 
@@ -104,6 +109,7 @@ export default function Dropzone() {
                 ))}
             </div>
             </div>
+            
             <Form files={files}/> 
         </div>
         

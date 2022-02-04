@@ -104,7 +104,7 @@ export default function Form({ files }) {
                     value="Generate link"/>
             </div>
 
-            <ToastContainer
+            {/* <ToastContainer
             position="top-center"
             newestOnTop={false}
             closeOnClick={false}
@@ -112,7 +112,7 @@ export default function Form({ files }) {
             pauseOnFocusLoss
             draggable={false}
             pauseOnHover
-            />
+            /> */}
         </form>
 
         

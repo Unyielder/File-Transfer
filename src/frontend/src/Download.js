@@ -55,10 +55,21 @@ export default function Download() {
                 <p className="download-title">{title}</p>
             </div>
             
-            <p className="download-message-title">Message:</p>
-            <div className="download-message-container">
-                <p className="download-message">{message}</p>
-            </div>
+                {
+                    message ?
+                    <div>
+                        <p className="download-message-title">Message:</p>
+                        <div className="download-message-container">
+                            <p className="download-message">{message}</p>
+                        </div>
+                    </div>
+                    :
+                    null
+
+                    
+                }
+                
+            
             
             <a className="download-link" href={downloadLink}>download</a>
         </div>

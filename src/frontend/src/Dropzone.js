@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Form from './Form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 
 
@@ -9,11 +11,34 @@ export default function Dropzone() {
     let allFiles = [];
 
     const onDrop = acceptedFiles => {
-        allFiles = [...files, ...acceptedFiles];
-        console.log(allFiles);
+        if(isUniqueFileName(acceptedFiles, allFiles)) {
+            console.log("all files unique")
+            allFiles = [...files, ...acceptedFiles];
+            console.log(allFiles);
 
-        setFiles(allFiles);
+            setFiles(prev => allFiles);
+        }
+        else {
+            toast.error("Can't have identical file names", {
+                position: "top",
+                autoClose: 5,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: 1,
+                });
+        }
+        
     };
+
+    const isUniqueFileName = (droppedFiles, uploadedFiles) => {
+        const droppedFileNames = droppedFiles.map(file => file.name);
+        const uploadedFileNames = uploadedFiles.map(file => file.name);
+        const allFileNames = [...droppedFileNames, ...uploadedFileNames];
+
+        return (new Set(allFileNames)).size == allFileNames.length;
+    }
 
     const convertBytes = (bytes) => {
         if(bytes.toString().length <= 6) {
@@ -63,9 +88,7 @@ export default function Dropzone() {
                                 </div>
                                 
                             }
-                                
-                            
-                            
+                                 
                     </div>
                 
                 <input {...getInputProps()} />
@@ -77,7 +100,6 @@ export default function Dropzone() {
                     <li className="file-item" key={files.indexOf(file)}>
                         {file.name} <br/> 
                         <span className="file-metadata">{convertBytes(file.size)}</span> - <span className="file-metadata">{file.type}</span>
-                        {/* <button className="delete">X</button> */}
                     </li>
                 ))}
             </div>

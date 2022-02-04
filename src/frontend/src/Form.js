@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import Popup from "./Popup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,7 +10,6 @@ export default function Form({ files }) {
     const {register, handleSubmit} = useForm();
     const navigate = useNavigate();
     const formData = new FormData();
-    const [isOpen, setIsOpen] = useState(false);
 
     files.forEach(file => {
         formData.append("file", file);
@@ -36,15 +34,7 @@ export default function Form({ files }) {
             const uuid = crypto.randomUUID();
             upload(uuid, input);
             toast.loading("Uploading please wait")
-                // position: "top-center",
-                // autoClose: false,
-                // closeOnClick: false,
-                // pauseOnHover: true,
-                // draggable: false,
-                // progress: 1,
-                // });
-            //setIsOpen(true);
-            
+              
         }
     }
 
@@ -62,7 +52,6 @@ export default function Form({ files }) {
             console.log("Upload Successful!");
             navigate(`link/${uuid}`, { state: { uuid: uuid, files: files } });
         } catch(err) {
-            console.log("Unable to upload file", err);
             toast.error("Unable to upload file", {
                 position: "top-right",
                 autoClose: 5,
@@ -85,7 +74,7 @@ export default function Form({ files }) {
                 <p className="label-desc">Describe your transfer</p>
                 <input
                     className="input input-title"
-                    value="test title"
+                    value="Images for profile picture"
                     type="text" 
                     name="title" 
                     {...register("title", {required:true})}/>
@@ -114,9 +103,7 @@ export default function Form({ files }) {
                     type="submit" 
                     value="Generate link"/>
             </div>
-            {/* <Popup open={isOpen}>
-                Uploading...
-            </Popup> */}
+
             <ToastContainer
             position="top-center"
             newestOnTop={false}

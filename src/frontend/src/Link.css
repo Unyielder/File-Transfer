@@ -4,11 +4,8 @@
 
 .link-content {
     background-color: #fbfdff;
-    width: 600px;
-    /* height: 100px; */
+    width: 500px;
     margin: auto;
-    min-height: 50vh;
-    
     border: 1px solid #b8b7b780;
     padding: 25px;
 }
@@ -22,10 +19,11 @@
 }
 
 .file-text {
-    font-weight: lighter;
+    /* font-weight: lighter; */
+    color: #777;
 }
 
-.file-list {
+.link-file-list {
     max-height: 208px;
     overflow-y: scroll;
     margin-bottom: 20px;
@@ -44,7 +42,7 @@
 
 .fa-copy {
     padding: 6px 10px;
-    color:#005ab4;
+    color: #409fff;
 }
 
 

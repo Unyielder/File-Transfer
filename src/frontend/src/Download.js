@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Download.css"
 
 
 export default function Download() {
@@ -47,12 +48,19 @@ export default function Download() {
     }
 
     return (
-        <div>
-            <h3>Download here</h3>
+        <div className="download-container">
+            <p className="download-here">Download here</p>
             
-            <p>{title}</p>
-            <p>{message}</p>
-            <a href={downloadLink}>download</a>
+            <div className="download-title-container">
+                <p className="download-title">{title}</p>
+            </div>
+            
+            <p className="download-message-title">Message:</p>
+            <div className="download-message-container">
+                <p className="download-message">{message}</p>
+            </div>
+            
+            <a className="download-link" href={downloadLink}>download</a>
         </div>
     )
 }

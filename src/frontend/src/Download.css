@@ -1,0 +1,41 @@
+.download-container {
+    background-color: #fbfdff;
+    border: 1px solid #b8b7b780;
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.download-here {
+    color:#777;
+    margin-bottom: 40px;
+}
+
+.download-title-container, .download-message-container {   
+    margin: auto;    
+    width:400px;
+}
+
+.download-title-container {
+    margin-bottom: 20px;
+}
+.download-message-container {
+    border-bottom: 1px solid #bbb6b6;
+    overflow: auto;
+    margin-bottom: 20px;
+}
+
+.download-title {
+    font-weight: bold;
+}
+
+.download-message-title {
+    text-align:left;
+    padding-left:53px;
+    color:#777;
+    margin-bottom: 10px;
+}
+
+.download-message {
+    margin-bottom: 5px;
+}

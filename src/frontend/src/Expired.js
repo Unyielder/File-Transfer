@@ -1,11 +1,12 @@
-
+import React from "react";
+import "./Expired.css"
 
 export default function Expired() {
 
 
     return (
-        <div>
-            <h2>Download link expired or unavailable</h2>
+        <div className="expired-container">
+            <h2 className="expired-texti">Download link is expired or unavailable</h2>
         </div>
     )
 }

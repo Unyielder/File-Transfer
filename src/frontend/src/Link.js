@@ -26,7 +26,7 @@ export default function Link() {
                     <p className="x-file">1<span className="file-text"> File</span></p> : <p className="x-file">{files.length}<span className="file-text"> Files</span></p>
                 }
 
-            <div className="file-list">
+            <div className="link-file-list">
                 {files.map(file => (
                     <li className="file-item" key={files.indexOf(file)}>
                         {file.name}

@@ -77,6 +77,7 @@ public class FileShareService {
             stream = new BufferedInputStream(new FileInputStream(zipFile));
             zos.close();
             metadata = new ObjectMetadata();
+            zipFile.delete();
         }
 
         storeFile(this.bucketPath, this.fileName, stream, metadata);

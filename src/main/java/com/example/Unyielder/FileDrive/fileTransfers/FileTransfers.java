@@ -1,10 +1,15 @@
 package com.example.Unyielder.FileDrive.fileTransfers;
+import com.vladmihalcea.hibernate.type.json.JsonType;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity(name = "file_transfers")
 @Table()
+@TypeDef(name = "jsonb", typeClass = JsonType.class)
 public class FileTransfers {
 
     @Id
@@ -29,6 +34,10 @@ public class FileTransfers {
     @Column(name="message", columnDefinition="TEXT")
     private String message;
 
+    @Type(type = "jsonb")
+    @Column(name="file_metadata", columnDefinition="JSON", nullable = false)
+    private String fileMetadata;
+
     @Column(name="download_link", columnDefinition="TEXT", nullable = false, unique = true)
     private String downloadLink;
 
@@ -38,10 +47,11 @@ public class FileTransfers {
     public FileTransfers() {
     }
 
-    public FileTransfers(UUID uuid, String title, String message, String downloadLink, LocalDate linkCreationDate) {
+    public FileTransfers(UUID uuid, String title, String message, String fileMetadata, String downloadLink, LocalDate linkCreationDate) {
         this.uuid = uuid;
         this.title = title;
         this.message = message;
+        this.fileMetadata = fileMetadata;
         this.downloadLink = downloadLink;
         this.linkCreationDate = linkCreationDate;
     }
@@ -62,6 +72,10 @@ public class FileTransfers {
         return message;
     }
 
+    public String getFileMetadata() {
+        return fileMetadata;
+    }
+
     public String getDownloadLink() {
         return downloadLink;
     }
@@ -80,6 +94,10 @@ public class FileTransfers {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setFileMetadata(String fileMetadata) {
+        this.fileMetadata = fileMetadata;
     }
 
     public void setDownloadLink(String downloadLink) {

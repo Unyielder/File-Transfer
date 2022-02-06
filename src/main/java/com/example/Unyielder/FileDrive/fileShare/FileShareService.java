@@ -5,6 +5,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.Unyielder.FileDrive.fileTransfers.FileTransfers;
 import com.example.Unyielder.FileDrive.fileTransfers.FileTransfersRepository;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -84,8 +86,20 @@ public class FileShareService {
         String link = getDownloadLink();
         System.out.println(link);
 
+        // Prepping metadata into JSON format
+        Map<String, Map<String, String>> metadataMap = new HashMap<>();
+        fileArray.forEach(file -> {
+            Map<String, String> map = new HashMap<>();
+            map.put("fileType", file.getContentType());
+            map.put("size", String.valueOf(file.getSize()));
+            metadataMap.put(file.getOriginalFilename(), map);
+        });
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String nestedJsonArray = gson.toJson(metadataMap);
+
         // Store in database
-        FileTransfers fileTransferRecord = new FileTransfers(uuid, title, message, link, LocalDate.now());
+        FileTransfers fileTransferRecord = new FileTransfers(uuid, title, message, nestedJsonArray, link, LocalDate.now());
         fileTransfersRepository.save(fileTransferRecord);
     }
 

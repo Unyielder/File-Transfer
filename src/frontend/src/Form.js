@@ -103,16 +103,6 @@ export default function Form({ files }) {
                     type="submit" 
                     value="Generate link"/>
             </div>
-
-            {/* <ToastContainer
-            position="top-center"
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl
-            pauseOnFocusLoss
-            draggable={false}
-            pauseOnHover
-            /> */}
         </form>
 
         

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { convertBytes, getTotalSize } from "./Utils";
 import "./Download.css"
 
 
@@ -11,6 +12,7 @@ export default function Download() {
     const [downloadLink, setDownloadLink] = useState("");
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
+    const [metadata, setMetadata] = useState([]);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -38,6 +40,11 @@ export default function Download() {
                 setDownloadLink(res.data.downloadLink);
                 setTitle(res.data.title);
                 setMessage(res.data.message);
+
+                const metaDataObj = JSON.parse(res.data.fileMetadata);
+                console.log(metaDataObj);
+
+                setMetadata(metaDataObj);
             }
 
         } catch(e) {
@@ -65,13 +72,21 @@ export default function Download() {
                     </div>
                     :
                     null
-
-                    
                 }
                 
             
-            
+
+            <div className="download-file-list">
+                {metadata.map(file => (
+                    <li className="download-file-item" key={metadata.indexOf(file)}>
+                        {file.name} <br/> 
+                        <span className="download-file-metadata">{convertBytes(file.size)}</span> - <span className="download-file-metadata">{file.type}</span>
+                    </li>
+                ))}
+        </div>
+
             <a className="download-link" href={downloadLink}>download</a>
+
         </div>
     )
 }

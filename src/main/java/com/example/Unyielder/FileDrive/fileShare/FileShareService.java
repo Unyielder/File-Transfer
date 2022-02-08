@@ -87,16 +87,17 @@ public class FileShareService {
         System.out.println(link);
 
         // Prepping metadata into JSON format
-        Map<String, Map<String, String>> metadataMap = new HashMap<>();
+        List<Map<String, String>> metadataArray = new ArrayList<>();
         fileArray.forEach(file -> {
             Map<String, String> map = new HashMap<>();
-            map.put("fileType", file.getContentType());
+            map.put("name", file.getOriginalFilename());
+            map.put("type", file.getContentType());
             map.put("size", String.valueOf(file.getSize()));
-            metadataMap.put(file.getOriginalFilename(), map);
+            metadataArray.add(map);
         });
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String nestedJsonArray = gson.toJson(metadataMap);
+        String nestedJsonArray = gson.toJson(metadataArray);
 
         // Store in database
         FileTransfers fileTransferRecord = new FileTransfers(uuid, title, message, nestedJsonArray, link, LocalDate.now());

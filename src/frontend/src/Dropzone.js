@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { convertBytes, getTotalSize } from "./Utils";
 import Form from './Form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -44,24 +45,6 @@ export default function Dropzone() {
         return (new Set(allFileNames)).size == allFileNames.length;
     }
 
-    const convertBytes = (bytes) => {
-        if(bytes.toString().length <= 6) {
-            return [(bytes/1000).toFixed(1), " kb"];    
-        } 
-        else if(bytes.toString().length > 6) {
-            return [(bytes/1000000).toFixed(1), " mb"];
-        }
-    }
-
-    const getTotalSize = () => {
-        let totalSize = 0;
-        files.forEach(file => {
-            let mb = file.size/1000000;
-            totalSize += mb;
-        })
-        return totalSize.toFixed(2);
-    }
-
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
     return (
@@ -89,7 +72,7 @@ export default function Dropzone() {
                                 null : 
                                 <div>
                                     <p>{files.length}<span className="upload-stats-label"> file(s)</span></p>
-                                    <p>{getTotalSize()} <span className="upload-stats-label">mb /1 gb</span></p>
+                                    <p>{getTotalSize(files)} <span className="upload-stats-label">mb /1 gb</span></p>
                                 </div>
                                 
                             }

@@ -107,7 +107,7 @@ public class FileShareService {
     public String getDownloadLink() {
         Date expiration = new Date();
         long expirationTime = Instant.now().toEpochMilli();
-        expirationTime += 1000 * 60 * 5; // 5 minutes
+        expirationTime += 1000 * 60 * 60 * 24 * 7; // 7 days
         expiration.setTime(expirationTime);
 
         URL url = s3.generatePresignedUrl(this.bucketPath, this.fileName, expiration);

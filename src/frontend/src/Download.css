@@ -4,6 +4,7 @@
     width: 500px;
     margin: 0 auto;
     padding: 20px;
+    border-radius: 10px;
 }
 
 .download-here {
@@ -14,13 +15,14 @@
 .download-title-container, .download-message-container {   
     margin: auto;    
     width:400px;
+    text-align:left;
 }
 
 .download-title-container {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .download-message-container {
-    border-bottom: 1px solid #bbb6b6;
+    /* border-bottom: 1px solid #bbb6b6; */
     overflow: auto;
     margin-bottom: 20px;
 }
@@ -32,10 +34,42 @@
 .download-message-title {
     text-align:left;
     padding-left:53px;
-    color:#777;
     margin-bottom: 10px;
 }
 
 .download-message {
     margin-bottom: 5px;
+    /* color:#777; */
+}
+
+.download-file-list {
+    max-height: 208px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+  }
+  
+.download-file-item {
+    position: relative;
+    padding: 15px;
+    list-style-type: none;
+    border-bottom: 1px solid #b8b7b780;
+}
+
+.download-file-item:first-child {
+    border-top: 1px solid #77777780;
+}
+
+.download-file-metadata {
+  font-weight:lighter;
+  font-size: 15px;
+}
+
+.download-link {
+    text-decoration: none;
+    color: #409fff;
+    cursor: pointer;
+}
+
+.download-link:hover {
+    color: #005ab4;
 }

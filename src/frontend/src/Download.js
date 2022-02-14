@@ -65,7 +65,6 @@ export default function Download() {
                 {
                     message ?
                     <div>
-                        <p className="download-message-title">Message:</p>
                         <div className="download-message-container">
                             <p className="download-message">{message}</p>
                         </div>
@@ -74,8 +73,7 @@ export default function Download() {
                     null
                 }
                 
-            
-
+    
             <div className="download-file-list">
                 {metadata.map(file => (
                     <li className="download-file-item" key={metadata.indexOf(file)}>
@@ -85,8 +83,8 @@ export default function Download() {
                 ))}
         </div>
 
-            <a className="download-link" href={downloadLink}>download</a>
-
+                <a className="download-link" href={downloadLink}>Download file{metadata.length == 1 ? null : <span>s</span>}</a>
+             
         </div>
     )
 }

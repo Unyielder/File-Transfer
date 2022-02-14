@@ -1,4 +1,4 @@
-package com.example.Unyielder.FileDrive.fileTransfers;
+package com.Unyielder.FileTransfer.fileTransfers;
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;

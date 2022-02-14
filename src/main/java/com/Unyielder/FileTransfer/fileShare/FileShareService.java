@@ -1,10 +1,10 @@
-package com.example.Unyielder.FileDrive.fileShare ;
+package com.Unyielder.FileTransfer.fileShare;
 
 
+import com.Unyielder.FileTransfer.fileTransfers.FileTransfers;
+import com.Unyielder.FileTransfer.fileTransfers.FileTransfersRepository;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.example.Unyielder.FileDrive.fileTransfers.FileTransfers;
-import com.example.Unyielder.FileDrive.fileTransfers.FileTransfersRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import java.time.*;
 
-import com.example.Unyielder.FileDrive.bucket.Bucket;
+import com.Unyielder.FileTransfer.bucket.Bucket;
 
 
 @Service

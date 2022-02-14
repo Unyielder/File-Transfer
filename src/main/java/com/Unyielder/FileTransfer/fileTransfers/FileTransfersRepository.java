@@ -1,6 +1,5 @@
-package com.example.Unyielder.FileDrive.fileTransfers;
+package com.Unyielder.FileTransfer.fileTransfers;
 
-import com.example.Unyielder.FileDrive.fileTransfers.FileTransfers;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

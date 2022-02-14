@@ -1,6 +1,6 @@
-package com.example.Unyielder.FileDrive.fileShare;
+package com.Unyielder.FileTransfer.fileShare;
 
-import com.example.Unyielder.FileDrive.fileTransfers.FileTransfers;
+import com.Unyielder.FileTransfer.fileTransfers.FileTransfers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

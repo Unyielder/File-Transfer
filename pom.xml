@@ -8,10 +8,10 @@
 		<version>2.6.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>FileDrive</artifactId>
+	<groupId>com</groupId>
+	<artifactId>FileTransfer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>FileDrive</name>
+	<name>FileTransfer</name>
 	<description>Application to store and share files</description>
 	<properties>
 		<java.version>17</java.version>

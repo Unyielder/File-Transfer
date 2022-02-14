@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 application.properties
+com.Unyielder.FileTransfer/bucket/
+com.Unyielder.FileTransfer/config/
 
 ### STS ###
 .apt_generated

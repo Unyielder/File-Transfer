@@ -9,7 +9,7 @@ export default function Link() {
     const { state } = useLocation();
     const { uuid, files } = state;
     
-    const downloadURL = `http://localhost:3000/download/${uuid}`;
+    const downloadURL = `http://localhost:3000/#/download/${uuid}`;
 
     const handleCopy = () => {
         navigator.clipboard.writeText(downloadURL);

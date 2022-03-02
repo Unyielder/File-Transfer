@@ -47,7 +47,7 @@ public class FileShareService {
         System.out.println(message);
         if(message.equals("null")) message = null;
 
-        InputStream stream;
+        InputStream fileStream;
         ObjectMetadata metadata;
 
         if(fileArray.size() == 0) {
@@ -55,18 +55,17 @@ public class FileShareService {
 
         } else if(fileArray.size() == 1) {
             MultipartFile file = fileArray.get(0);
-            stream = file.getInputStream();
+            fileStream = file.getInputStream();
             metadata = getMetadata(file);
             this.fileName = file.getOriginalFilename() + "-" + UUID.randomUUID();
 
         } else {
             this.fileName = "zip-" + UUID.randomUUID();
-            File zipFile = new File(this.fileName);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ZipOutputStream zos = new ZipOutputStream(bos);
 
-            ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(zipFile)));
             for(MultipartFile file : fileArray) {
                 InputStream inputStream = file.getInputStream();
-
                 ZipEntry zipEntry = new ZipEntry(Objects.requireNonNull(file.getOriginalFilename()));
                 zos.putNextEntry(zipEntry);
 
@@ -76,13 +75,12 @@ public class FileShareService {
                     zos.write(bytes, 0, length);
                 }
             }
-            stream = new BufferedInputStream(new FileInputStream(zipFile));
+            fileStream = new ByteArrayInputStream(bos.toByteArray());
             zos.close();
             metadata = new ObjectMetadata();
-            zipFile.delete();
         }
 
-        storeFile(this.bucketPath, this.fileName, stream, metadata);
+        storeFile(this.bucketPath, this.fileName, fileStream, metadata);
         String link = getDownloadLink();
         System.out.println(link);
 

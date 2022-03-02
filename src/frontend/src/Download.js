@@ -29,7 +29,6 @@ export default function Download() {
     const getFileTransferData = async (uuid) => {
         try {
             const res = await axios.get(`http://localhost:8080/file-sharing/download/${uuid}`)
-            console.log(res.data);
             
             const linkCreationDate = new Date(res.data.linkCreationDate);
             const today = new Date();
@@ -42,8 +41,6 @@ export default function Download() {
                 setMessage(res.data.message);
 
                 const metaDataObj = JSON.parse(res.data.fileMetadata);
-                console.log(metaDataObj);
-
                 setMetadata(metaDataObj);
             }
 

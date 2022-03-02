@@ -20,9 +20,6 @@ export default function Form({ files }) {
     }
     
     const onSubmit = (input) => {
-        console.log(input.title);
-        console.log(input.message)
-       
         if(!formData.get("file")) {
             alert("You need to attach atleast 1 file before submitting.")
         } else {

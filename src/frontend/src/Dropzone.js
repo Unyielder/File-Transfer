@@ -13,12 +13,8 @@ export default function Dropzone() {
 
     const onDrop = acceptedFiles => {
         if(isUniqueFileName(acceptedFiles, files)) {
-            console.log("all files unique")
             allFiles = [...files, ...acceptedFiles];
-            console.log(allFiles);
-
             setFiles(allFiles);
-            console.log("state: ", allFiles)
         }
         else {
             toast.error("Files can't have identical names", {
@@ -38,10 +34,7 @@ export default function Dropzone() {
         const droppedFileNames = droppedFiles.map(file => file.name);
         const uploadedFileNames = uploadedFiles.map(file => file.name);
         const allFileNames = [...droppedFileNames, ...uploadedFileNames];
-        
-        console.log("raw size: ", allFileNames.length);
-        console.log("unique size: ", new Set(allFileNames).size);
-        
+            
         return (new Set(allFileNames)).size == allFileNames.length;
     }
 

@@ -41,12 +41,7 @@ public class FileShareService {
     }
 
     public void upload(List<MultipartFile> fileArray, UUID uuid, String title, String message) throws IOException {
-        fileArray.forEach(file -> System.out.println(file.getOriginalFilename()));
-        System.out.println(uuid);
-        System.out.println(title);
-        System.out.println(message);
         if(message.equals("null")) message = null;
-
         InputStream fileStream;
         ObjectMetadata metadata;
 
@@ -82,7 +77,6 @@ public class FileShareService {
 
         storeFile(this.bucketPath, this.fileName, fileStream, metadata);
         String link = getDownloadLink();
-        System.out.println(link);
 
         // Prepping metadata into JSON format
         List<Map<String, String>> metadataArray = new ArrayList<>();

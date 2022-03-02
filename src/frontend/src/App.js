@@ -4,8 +4,7 @@ import Download from './Download';
 import Link from './Link';
 import Expired from './Expired';
 import './App.css';
-import {BrowserRouter, HashRouter, Routes, Route} from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import {HashRouter, Routes, Route} from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 

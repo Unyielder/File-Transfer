@@ -80,7 +80,7 @@ export default function Download() {
                 ))}
         </div>
 
-                <a className="download-link" href={downloadLink}>Download file{metadata.length == 1 ? null : <span>s</span>}</a>
+                <a className="download-link" href={downloadLink}>Download file{metadata.length === 1 ? null : <span>s</span>}</a>
              
         </div>
     )

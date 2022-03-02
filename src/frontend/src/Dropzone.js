@@ -34,8 +34,8 @@ export default function Dropzone() {
         const droppedFileNames = droppedFiles.map(file => file.name);
         const uploadedFileNames = uploadedFiles.map(file => file.name);
         const allFileNames = [...droppedFileNames, ...uploadedFileNames];
-            
-        return (new Set(allFileNames)).size == allFileNames.length;
+
+        return (new Set(allFileNames)).size === allFileNames.length;
     }
 
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -52,7 +52,7 @@ export default function Dropzone() {
                     <div className="upload-here">
                         <p>
                             {
-                                files.length == 0 ?
+                                files.length === 0 ?
                                 <span>Upload files here</span> :
                                 <span>Add more files</span>
                             }  
@@ -61,7 +61,7 @@ export default function Dropzone() {
                     <div className="upload-stats">
                             
                             {
-                                files.length == 0 ? 
+                                files.length === 0 ? 
                                 null : 
                                 <div>
                                     <p>{files.length}<span className="upload-stats-label"> file(s)</span></p>

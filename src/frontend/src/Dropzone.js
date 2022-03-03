@@ -7,17 +7,36 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 
 
+
 export default function Dropzone() {
     const [files, setFiles] = useState([]);
+    const [totalSize, setTotalSize] = useState([]);
+    const MAX_FILE_SIZE = 500;
     let allFiles = [];
+    let fileSize = 0;
 
     const onDrop = acceptedFiles => {
         if(isUniqueFileName(acceptedFiles, files)) {
             allFiles = [...files, ...acceptedFiles];
-            setFiles(allFiles);
-        }
-        else {
-            toast.error("Files can't have identical names", {
+            fileSize = getTotalSize(allFiles);
+
+            if(fileSize <= MAX_FILE_SIZE) {
+                setFiles(allFiles);
+                setTotalSize(fileSize); 
+            } else {
+                toast.error(`File size limit exceeded, can only upload ${MAX_FILE_SIZE}mb at a time`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
+            
+        } else {
+            toast.error("Files cannot have identical names", {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -65,7 +84,7 @@ export default function Dropzone() {
                                 null : 
                                 <div>
                                     <p>{files.length}<span className="upload-stats-label"> file(s)</span></p>
-                                    <p>{getTotalSize(files)} <span className="upload-stats-label">mb /1 gb</span></p>
+                                    <p>{totalSize} <span className="upload-stats-label"> /{MAX_FILE_SIZE} mb</span></p>
                                 </div>
                                 
                             }

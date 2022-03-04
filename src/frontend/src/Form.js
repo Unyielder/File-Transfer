@@ -49,15 +49,7 @@ export default function Form({ files }) {
             console.log("Upload Successful!");
             navigate(`link/${uuid}`, { state: { uuid: uuid, files: files } });
         } catch(err) {
-            toast.error("Unable to upload file", {
-                position: "top-right",
-                autoClose: 5,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: false,
-                progress: 1,
-                });
+            navigate('error')
         }
         
     }

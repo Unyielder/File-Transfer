@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { convertBytes, getTotalSize } from "./Utils";
+import { convertBytes } from "./Utils";
 import "./Download.css"
 
 

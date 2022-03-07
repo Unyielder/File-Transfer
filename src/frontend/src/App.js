@@ -5,7 +5,7 @@ import Link from './Link';
 import Expired from './Expired';
 import Error from './Error';
 import './App.css';
-import {HashRouter, Routes, Route} from 'react-router-dom';
+import {HashRouter, Routes, Route, Navigate} from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -16,6 +16,7 @@ function App() {
       <div>
         <Navbar />
           <Routes>
+            <Route path="/" element={<Navigate to="/upload" />}/>
             <Route path="upload" element={<Dropzone/>}/>
             <Route path="upload/link/:id" element={<Link />}/>
             <Route path="upload/error" element={<Error />}/>

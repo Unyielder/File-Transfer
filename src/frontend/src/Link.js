@@ -18,12 +18,12 @@ export default function Link() {
 
     return (
         <div className="link-container">
-            <div className="link-content">
-                <h3 className="get-your-link">Get your link!!</h3>
-                {
-                    files.length === 1 ?
-                    <p className="x-file">1<span className="file-text"> File</span></p> : <p className="x-file">{files.length}<span className="file-text"> Files</span></p>
-                }
+         
+            <h3 className="get-your-link">Get your link!!</h3>
+            {
+                files.length === 1 ?
+                <p className="x-file">1<span className="file-text"> File</span></p> : <p className="x-file">{files.length}<span className="file-text"> Files</span></p>
+            }
 
             <div className="link-file-list">
                 {files.map(file => (
@@ -33,18 +33,18 @@ export default function Link() {
 
                 ))}
             </div>
-                <input readOnly className="copy-input" value={downloadURL}/>
+            <input readOnly className="copy-input" value={downloadURL}/>
                 
-                <a data-tip="Copied!" data-event='click focus'>
-                    <button id="copy-btn" readOnly>
-                        <i className="fas fa-copy"></i>
-                    </button>
-                </a>
-                <ReactTooltip 
-                    globalEventOff='click'
-                    afterShow={handleCopy} />
+            <a data-tip="Copied!" data-event='click focus'>
+                <button id="copy-btn" readOnly>
+                    <i className="fas fa-copy"></i>
+                </button>
+            </a>
+            <ReactTooltip 
+                globalEventOff='click'
+                afterShow={handleCopy} />
 
-            </div>
+           
         </div>
         
     )

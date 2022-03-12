@@ -1,8 +1,4 @@
 .link-container {
-
-}
-
-.link-content {
     background-color: #fbfdff;
     width: 500px;
     margin: auto;
@@ -49,3 +45,11 @@
 }
 
 
+@media only screen and (max-width:500px) {
+    .link-container{
+        width: 80%;
+    }
+    .copy-input {
+        width: 70%;
+    }
+}

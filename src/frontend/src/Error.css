@@ -9,3 +9,9 @@
 .error-error {
     margin-bottom: 20px;
 }
+
+@media only screen and (max-width:500px) {
+    .error-container {
+        width: 80%;
+    }
+}

@@ -11,7 +11,7 @@
 .container {
   display:flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   width: 400px;
   margin: 0 auto;
 }
@@ -102,6 +102,10 @@
   background-color: #fbfdff;
 }
 
+.input[type="text"], .input[type="textarea"] {
+  font-size: 15px;
+}
+
 .input-title {
   overflow-x: scroll;
 }
@@ -183,4 +187,25 @@
 }
 
 
+@media only screen and (max-width: 500px) {
+  .nav {
+    margin-bottom: 20px;
+  }
 
+  .container {
+    width: 95%;
+  }
+  .upload {
+    display:flex;
+    flex-direction: column;
+  }
+  .upload-image {
+    margin-bottom:5px;
+  }
+  .upload-here {
+    margin-bottom: 15px;
+  }
+  .button {
+    width:35%;
+  }
+}

@@ -16,7 +16,6 @@
 }
 
 .file-text {
-    /* font-weight: lighter; */
     color: #777;
 }
 
@@ -26,6 +25,10 @@
     margin-bottom: 20px;
 }
 
+.copy {
+    margin-right:10%;
+
+}
 .copy-input {
     padding: 7px 8px;
     width: 412px;
@@ -33,7 +36,10 @@
     border-radius: 3px; 
 }
 
+
 #copy-btn {
+    position: absolute;
+    
     border: 1px solid #22222241;
     height:32px;
     border-radius: 3px;

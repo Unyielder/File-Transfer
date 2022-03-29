@@ -2,13 +2,14 @@ import { useLocation } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import ReactTooltip from 'react-tooltip';
 import "./Link.css";
+import { BASE_URL_FRONTEND } from './config/env.js';
 
 
 export default function Link() {
     const { state } = useLocation();
     const { uuid, files } = state;
     
-    const downloadURL = `http://localhost:3000/#/download/${uuid}`;
+    const downloadURL = `${BASE_URL_FRONTEND}/#/download/${uuid}`;
 
     const handleCopy = () => {
         navigator.clipboard.writeText(downloadURL);
@@ -33,16 +34,19 @@ export default function Link() {
 
                 ))}
             </div>
-            <input readOnly className="copy-input" value={downloadURL}/>
+            <div className="copy">
+                <input readOnly className="copy-input" value={downloadURL}/>
                 
-            <a data-tip="Copied!" data-event='click focus'>
-                <button id="copy-btn" readOnly>
-                    <i className="fas fa-copy"></i>
-                </button>
-            </a>
-            <ReactTooltip 
-                globalEventOff='click'
-                afterShow={handleCopy} />
+                    <a className="copy-popup" data-tip="Copied!" data-event='click focus'>
+                        <button id="copy-btn" readOnly>
+                        <i className="fas fa-copy"></i>
+                        </button>
+                    </a>
+                    <ReactTooltip 
+                        globalEventOff='click'
+                        afterShow={handleCopy} />
+            </div>
+            
 
            
         </div>

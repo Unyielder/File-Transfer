@@ -70,8 +70,8 @@ public class FileShareService {
                     zos.write(bytes, 0, length);
                 }
             }
-            fileStream = new ByteArrayInputStream(bos.toByteArray());
             zos.close();
+            fileStream = new ByteArrayInputStream(bos.toByteArray());
             metadata = new ObjectMetadata();
         }
 

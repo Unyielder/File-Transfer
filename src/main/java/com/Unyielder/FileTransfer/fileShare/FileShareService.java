@@ -52,8 +52,9 @@ public class FileShareService {
             MultipartFile file = fileArray.get(0);
             fileStream = file.getInputStream();
             metadata = getMetadata(file);
-            this.fileName = file.getOriginalFilename() + "-" + UUID.randomUUID();
-
+            String[] fileNameParts = file.getOriginalFilename().split("\\.(?=[^\\.]+$)");
+            this.fileName = fileNameParts[0] + "-" + UUID.randomUUID() + "." + fileNameParts[1];
+            System.out.println(this.fileName);
         } else {
             this.fileName = "zip-" + UUID.randomUUID();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();

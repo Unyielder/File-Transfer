@@ -66,7 +66,7 @@ export default function Dropzone() {
             <div {...getRootProps()} className="upload">
                 
                     <div className="upload-image">
-                        <i className="fas fa-plus-circle"></i>
+                        <i className="fas fa-cloud-upload-alt"></i>
                     </div>
                     <div className="upload-here">
                         <p>

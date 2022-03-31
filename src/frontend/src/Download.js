@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { convertBytes } from "./Utils";
 import "./Download.css"
+import { BASE_URL_BACKEND } from './config/env.js';
 
 
 export default function Download() {
@@ -28,7 +29,7 @@ export default function Download() {
 
     const getFileTransferData = async (uuid) => {
         try {
-            const res = await axios.get(`http://localhost:8080/file-sharing/download/${uuid}`)
+            const res = await axios.get(`${BASE_URL_BACKEND}/file-sharing/download/${uuid}`)
             
             const linkCreationDate = new Date(res.data.linkCreationDate);
             const today = new Date();

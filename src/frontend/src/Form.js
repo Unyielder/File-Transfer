@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL_BACKEND } from './config/env.js';
 
 
 export default function Form({ files }) {
@@ -38,7 +39,7 @@ export default function Form({ files }) {
     const upload = async (uuid, input) => {
         try {
             await axios.post(
-                `http://localhost:8080/file-sharing/upload/${uuid}/${input.title}/${input.message ? input.message : null}`,
+                `${BASE_URL_BACKEND}/file-sharing/upload/${uuid}/${input.title}/${input.message ? input.message : null}`,
                 formData,
                 {
                     "headers": {
@@ -63,7 +64,6 @@ export default function Form({ files }) {
                 <p className="label-desc">Describe your transfer</p>
                 <input
                     className="input input-title"
-                    value="Images for profile picture"
                     type="text" 
                     name="title" 
                     {...register("title", {required:true})}/>

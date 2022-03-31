@@ -37,11 +37,11 @@
   margin-bottom: 5px;
 
 }
-.fa-plus-circle {
-  font-size: 50px;
+.fa-cloud-upload-alt {
+  font-size: 35px;
   color: #409fff;
 }
-.fa-plus-circle:hover {
+.fa-cloud-upload-alt:hover {
   -moz-transition: all .15s ease-in;
   -o-transition: all .15s ease-in;
   -webkit-transition: all .15s ease-in;

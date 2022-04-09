@@ -2,10 +2,10 @@ import React from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL_BACKEND } from './config/env.js';
+import { createGlobalState } from 'react-hooks-global-state';
 
+export const { setGlobalState, useGlobalState } = createGlobalState({ isLoading: false });
 
 export default function Form({ files }) {
     const {register, handleSubmit} = useForm();
@@ -31,8 +31,7 @@ export default function Form({ files }) {
 
             const uuid = crypto.randomUUID();
             upload(uuid, input);
-            toast.loading("Uploading please wait")
-              
+            setGlobalState("isLoading", true)
         }
     }
 
@@ -56,8 +55,9 @@ export default function Form({ files }) {
     }
 
     return (
-        
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <div>
+            
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
             
             <div className="title">
                 <label className="label">Title</label>
@@ -92,7 +92,9 @@ export default function Form({ files }) {
                     type="submit" 
                     value="Generate link"/>
             </div>
-        </form>
+            </form>
+        </div>
+        
 
         
     )

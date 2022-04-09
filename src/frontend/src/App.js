@@ -6,15 +6,25 @@ import Expired from './Expired';
 import Error from './Error';
 import './App.css';
 import {HashRouter, Routes, Route, Navigate} from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
+import LoadingOverlay from 'react-loading-overlay';
+import { useGlobalState } from './Form';
 
 
 
 function App() {
   return (
+    <div>
+    <LoadingOverlay
+                active={ useGlobalState('isLoading')[0] }
+                spinner
+                text='Uploading please wait...'
+            >
     <HashRouter>
-      <div>
+      
+      
         <Navbar />
+        
+            
           <Routes>
             <Route path="/" element={<Navigate to="/upload" />}/>
             <Route path="upload" element={<Dropzone/>}/>
@@ -22,12 +32,13 @@ function App() {
             <Route path="upload/error" element={<Error />}/>
             <Route path="download/:id" element={<Download />}/> 
             <Route path="expired" element={<Expired />}/>
-            
           </Routes>
+          
       
-      </div>
+      
     </HashRouter>
-    
+    </LoadingOverlay>
+    </div>
   );
 }
 

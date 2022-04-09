@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Error.css"
+import { setGlobalState } from './Form'
 
 export default function Error() {
+
+    useEffect(() => {
+        setGlobalState("isLoading", false)
+    }, [])
 
     return (
         <div className="error-container">

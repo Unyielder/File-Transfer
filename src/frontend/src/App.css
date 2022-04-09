@@ -1,3 +1,6 @@
+._loading_overlay_wrapper {
+  height: 100vh;
+}
 
 .nav {
   background-color: #fbfdff;
@@ -7,7 +10,7 @@
   margin-bottom: 100px;
 }
 
-h3 {
+.nav-title {
   display: inline;
   color:black;
 }
@@ -15,15 +18,16 @@ h3 {
   text-decoration: none;
 }
 
-.nav:visisted {
+.nav:visited {
   color: black;
 }
 .container {
   display:flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   width: 400px;
   margin: 0 auto;
+  overflow-y: none;
 }
 
 .upload-container, .title, .message {
@@ -69,7 +73,7 @@ h3 {
 }
 .file-list {
   max-height: 208px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .file-item {
@@ -85,10 +89,6 @@ h3 {
 .file-metadata {
   font-weight:lighter;
   font-size: 15px;
-}
-
-.form {
-  text-align: center;
 }
 
 .label {
@@ -122,7 +122,6 @@ h3 {
 .input-message {
   min-height: 42px;
   max-height: 229px;
-  overflow-y:scroll;
 }
 
 .form-buttons {
@@ -131,7 +130,6 @@ h3 {
   gap: 3%;
 }
 .button {
-  
   width: 140px;
   height: 50px;
   font-size: 17px;
@@ -168,12 +166,6 @@ h3 {
 
   background-color:#005ab4;
   border-color: #005ab4;
-}
-
-.fa-spinner{
-  font-size: 100px;
-  color: #409fff;
-  animation: spin 1s infinite linear;
 }
 
 .popup {

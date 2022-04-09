@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Expired.css"
+import { setGlobalState } from './Form'
 
 export default function Expired() {
+
+    useEffect(() => {
+        setGlobalState("isLoading", false)
+    }, [])
 
 
     return (

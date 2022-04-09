@@ -1,14 +1,20 @@
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import ReactTooltip from 'react-tooltip';
 import "./Link.css";
 import { BASE_URL_FRONTEND } from './config/env.js';
+import { setGlobalState } from './Form'
 
 
 export default function Link() {
     const { state } = useLocation();
     const { uuid, files } = state;
     
+    useEffect(() => {
+        setGlobalState("isLoading", false)
+    }, [])
+
     const downloadURL = `${BASE_URL_FRONTEND}/#/download/${uuid}`;
 
     const handleCopy = () => {

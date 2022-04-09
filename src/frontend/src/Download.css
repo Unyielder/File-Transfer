@@ -39,12 +39,11 @@
 
 .download-message {
     margin-bottom: 5px;
-    /* color:#777; */
 }
 
 .download-file-list {
     max-height: 208px;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-bottom: 20px;
   }
   

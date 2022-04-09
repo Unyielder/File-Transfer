@@ -54,7 +54,6 @@ public class FileShareService {
             metadata = getMetadata(file);
             String[] fileNameParts = file.getOriginalFilename().split("\\.(?=[^\\.]+$)");
             this.fileName = fileNameParts[0] + "-" + UUID.randomUUID() + "." + fileNameParts[1];
-            System.out.println(this.fileName);
         } else {
             this.fileName = "zip-" + UUID.randomUUID();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -75,8 +74,16 @@ public class FileShareService {
             fileStream = new ByteArrayInputStream(bos.toByteArray());
             metadata = new ObjectMetadata();
         }
+        s3.putObject(this.bucketPath, this.fileName, fileStream, metadata);
+        storeTransferData(uuid, title, message, fileArray);
+    }
 
-        storeFile(this.bucketPath, this.fileName, fileStream, metadata);
+    public FileTransfers getTransferData(UUID uuid) {
+        return fileTransfersRepository.findByUuid(uuid);
+    }
+
+    private void storeTransferData(UUID uuid, String title, String message, List<MultipartFile> fileArray) {
+        // Fetching download link from s3 bucket
         String link = getDownloadLink();
 
         // Prepping metadata into JSON format
@@ -88,7 +95,6 @@ public class FileShareService {
             map.put("size", String.valueOf(file.getSize()));
             metadataArray.add(map);
         });
-
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String nestedJsonArray = gson.toJson(metadataArray);
 
@@ -97,7 +103,7 @@ public class FileShareService {
         fileTransfersRepository.save(fileTransferRecord);
     }
 
-    public String getDownloadLink() {
+    private String getDownloadLink() {
         Date expiration = new Date();
         long expirationTime = Instant.now().toEpochMilli();
         expirationTime += 1000 * 60 * 60 * 24 * 7; // 7 days
@@ -105,19 +111,6 @@ public class FileShareService {
 
         URL url = s3.generatePresignedUrl(this.bucketPath, this.fileName, expiration);
         return url.toString();
-    }
-
-    public FileTransfers getTransferData(UUID uuid) {
-        return fileTransfersRepository.findByUuid(uuid);
-    }
-
-    private void storeFile(String path, String fileName, InputStream inputStream, ObjectMetadata metadata) {
-        s3.putObject(
-                path,
-                fileName,
-                inputStream,
-                metadata
-        );
     }
 
     private ObjectMetadata getMetadata(MultipartFile file) {

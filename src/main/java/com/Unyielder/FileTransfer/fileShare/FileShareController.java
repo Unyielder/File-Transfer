@@ -27,7 +27,7 @@ public class FileShareController {
             consumes= MediaType.MULTIPART_FORM_DATA_VALUE,
             produces= MediaType.APPLICATION_JSON_VALUE
     )
-    public void fileUpload(
+    public void fileUploadController(
             @RequestParam("file") List<MultipartFile> fileArray,
             @PathVariable("uuid") UUID uuid,
             @PathVariable("title") String title,
@@ -36,7 +36,7 @@ public class FileShareController {
     }
 
     @GetMapping("download/{uuid}")
-    public FileTransfers getDownloadLink(@PathVariable("uuid") UUID uuid) {
+    public FileTransfers getTransferController(@PathVariable("uuid") UUID uuid) {
         return fileShareService.getTransferData(uuid);
     }
 

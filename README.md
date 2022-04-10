@@ -12,11 +12,11 @@ Click or drag n drop to the first box to upload the desired file(s).
 ### Step 2:
 Press the "Generate link" button after dropping in all desired file(s) to upload them to the cloud for quick retrieval.
 
-Restarting the process can also be done by
+Restarting the process can be done by
 pressing "Restart" or by refreshing the browser.
 
 ### Step 3:
 Copy the generated download link using the blue copy button
 
 ### Step 4:
-Share this link with anybody to download your file!
+Share this link with anybody to download your file(s)!

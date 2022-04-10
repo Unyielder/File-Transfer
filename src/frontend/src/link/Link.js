@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import ReactTooltip from 'react-tooltip';
 import "./Link.css";
-import { BASE_URL_FRONTEND } from './config/env.js';
-import { setGlobalState } from './Form'
+import { BASE_URL_FRONTEND } from '../config/env.js';
+import { setGlobalState } from '../form/Form'
 
 
 export default function Link() {
@@ -19,10 +19,8 @@ export default function Link() {
 
     const handleCopy = () => {
         navigator.clipboard.writeText(downloadURL);
-        
     }
     
-
     return (
         <div className="link-container">
          
@@ -52,9 +50,6 @@ export default function Link() {
                         globalEventOff='click'
                         afterShow={handleCopy} />
             </div>
-            
-
-           
         </div>
         
     )

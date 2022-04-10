@@ -1,30 +1,27 @@
-import Navbar from './Navbar';
-import Dropzone from './Dropzone';
-import Download from './Download';
-import Link from './Link';
-import Expired from './Expired';
-import Error from './Error';
+import Navbar from '../navbar/Navbar';
+import Dropzone from '../dropzone/Dropzone';
+import Download from '../download/Download';
+import Link from '../link/Link';
+import Expired from '../expired/Expired';
+import Error from '../error/Error';
 import './App.css';
 import {HashRouter, Routes, Route, Navigate} from 'react-router-dom';
 import LoadingOverlay from 'react-loading-overlay';
-import { useGlobalState } from './Form';
-
+import { useGlobalState } from '../form/Form';
 
 
 function App() {
   return (
     <div>
-    <LoadingOverlay
+      <LoadingOverlay
                 active={ useGlobalState('isLoading')[0] }
                 spinner
                 text='Uploading please wait...'
-            >
-    <HashRouter>
-      
-      
-        <Navbar />
-        
-            
+              >
+      <HashRouter>
+
+          <Navbar />
+
           <Routes>
             <Route path="/" element={<Navigate to="/upload" />}/>
             <Route path="upload" element={<Dropzone/>}/>
@@ -34,10 +31,8 @@ function App() {
             <Route path="expired" element={<Expired />}/>
           </Routes>
           
-      
-      
-    </HashRouter>
-    </LoadingOverlay>
+      </HashRouter>
+      </LoadingOverlay>
     </div>
   );
 }

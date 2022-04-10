@@ -2,8 +2,10 @@ import React from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { BASE_URL_BACKEND } from './config/env.js';
+import { BASE_URL_BACKEND } from '../config/env.js';
 import { createGlobalState } from 'react-hooks-global-state';
+import './Form.css'
+
 
 export const { setGlobalState, useGlobalState } = createGlobalState({ isLoading: false });
 
@@ -56,46 +58,44 @@ export default function Form({ files }) {
 
     return (
         <div>
-            
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
-            
-            <div className="title">
-                <label className="label">Title</label>
-                <p className="label-desc">Describe your transfer</p>
-                <input
-                    className="input input-title"
-                    type="text" 
-                    name="title" 
-                    {...register("title", {required:true})}/>
-            </div>
 
-            <div className="message">
-                <label className="label">Message </label>
-                <p className="label-desc">Add a message to your transfer</p>
-                <textarea
-                    className="input input-message"
-                    type="textarea" 
-                    name="message" 
-                    {...register("message")}/>
-            </div>
+                <div className="title">
+                    <label className="label">Title</label>
+                    <p className="label-desc">Describe your transfer</p>
+                    <input
+                        className="input input-title"
+                        type="text" 
+                        name="title" 
+                        {...register("title", {required:true})}/>
+                </div>
 
-            <div className="form-buttons">
-                <input 
-                    className="button button-restart"
-                    id="btn-restart"
-                    type="button" 
-                    value="Restart"
-                    onClick={() => restart()}/>
-                <input 
-                    className="button button-submit"
-                    id="btn-submit"
-                    type="submit" 
-                    value="Generate link"/>
-            </div>
+                <div className="message">
+                    <label className="label">Message </label>
+                    <p className="label-desc">Add a message to your transfer</p>
+                    <textarea
+                        className="input input-message"
+                        type="textarea" 
+                        name="message" 
+                        maxlength="325"
+                        {...register("message")}/>
+                </div>
+
+                <div className="form-buttons">
+                    <input 
+                        className="button button-restart"
+                        id="btn-restart"
+                        type="button" 
+                        value="Restart"
+                        onClick={() => restart()}/>
+                    <input 
+                        className="button button-submit"
+                        id="btn-submit"
+                        type="submit" 
+                        value="Generate link"/>
+                </div>
             </form>
         </div>
-        
-
         
     )
 }

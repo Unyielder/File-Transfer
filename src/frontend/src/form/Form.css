@@ -1,0 +1,97 @@
+.title, .message {
+    background-color: #fbfdff;
+    border: 1px solid #b8b7b780;
+    padding: 25px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.button { 
+    border-radius: 10px;
+}
+
+.label {
+    display: inline-block;
+    margin-bottom: 7px;
+    font-weight:300;
+    font-size:17px;
+}
+  
+.label-desc {
+  color: #777;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.input {
+  min-width: 70%;
+  max-width: 70%;
+  margin-bottom: 15px;
+  border:none;
+  border-bottom: 1px solid black;
+  background-color: #fbfdff;
+}
+  
+.input[type="text"], .input[type="textarea"] {
+  font-size: 15px;
+}
+  
+.input-title {
+  overflow-x: scroll;
+}
+
+.input-message {
+  min-height: 42px;
+  max-height: 229px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 3%;
+}
+
+.button {
+  width: 140px;
+  height: 50px;
+  font-size: 17px;
+}
+  
+.button:hover {
+  cursor: pointer;
+}
+  
+.button-restart {
+  background-color:#f2f2f3;
+  color: #409fff;
+  border: none;
+}
+
+.button-restart:hover {
+  -moz-transition: all .15s ease-in;
+  -o-transition: all .15s ease-in;
+  -webkit-transition: all .15s ease-in;
+  transition: all .15s ease-in;
+  color: #005ab4;
+}
+  
+.button-submit {
+  background-color:#409fff;
+  border: 1px solid #409fff;
+  color: white;
+}
+  
+.button-submit:hover {
+  -moz-transition: all .15s ease-in;
+  -o-transition: all .15s ease-in;
+  -webkit-transition: all .15s ease-in;
+  transition: all .15s ease-in;
+  background-color:#005ab4;
+  border-color: #005ab4;
+}
+
+@media only screen and (max-width: 500px) {
+  .button {
+    width:35%;
+  }
+}

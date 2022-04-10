@@ -1,0 +1,19 @@
+._loading_overlay_wrapper {
+  height: 100vh;
+}
+
+.container {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  margin: 0 auto;
+  overflow-y: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    width: 95%;
+  }
+
+}

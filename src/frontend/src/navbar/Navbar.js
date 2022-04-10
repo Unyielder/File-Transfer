@@ -1,4 +1,6 @@
-import { BASE_URL_FRONTEND } from './config/env.js';
+import { BASE_URL_FRONTEND } from '../config/env.js';
+import './Navbar.css'
+
 
 export default function Navbar() {
     return (

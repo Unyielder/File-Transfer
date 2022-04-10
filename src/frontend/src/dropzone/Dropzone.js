@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { convertBytes, getTotalSize } from "./Utils";
-import Form from './Form';
+import { convertBytes, getTotalSize } from "../Utils";
+import Form from '../form/Form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./App.css";
-
+import './Dropzone.css'
 
 
 export default function Dropzone() {

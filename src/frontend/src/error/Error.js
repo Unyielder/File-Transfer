@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./Error.css"
-import { setGlobalState } from './Form'
+import { setGlobalState } from '../form/Form'
+
 
 export default function Error() {
 

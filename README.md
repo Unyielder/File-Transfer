@@ -1,7 +1,8 @@
 # FileTransfer
 
 Share your files effortlessly with FileTransfer. Built for quick file sharing with no account creation hassle or 
-emailing.
+emailing. <br />
+[FileTransfer app](https://file-transferx.herokuapp.com)
 
 ## How to use 
 
